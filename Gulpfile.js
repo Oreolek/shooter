@@ -26,7 +26,7 @@ var reload = browserSync.reload;
 
 function html (target) {
   return function () {
-    return gulp.src('html/index.html')
+    return gulp.src(['html/index.html','html/en.html'])
           .pipe(gulp.dest(target));
     };
 }
