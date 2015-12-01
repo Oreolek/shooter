@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Тридцать пять выстрелов</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div id="toolbar">
+      <h1>Тридцать пять выстрелов</h1>
+      <div class="nav">
+        <a href="#" class="button" id="menu-button">Меню</a>
+      </div>
+    </div>
+    <ul id="menu">
+      <li><a href="#title, #content_wrapper">Рассказ</a></li>
+      <li><a href="#character_panel">Персонаж</a></li>
+    </ul>
+
+    <div id="page">
+
+      <div id="tools_wrapper">
+        <div id="character_panel" class="tools right">
+          <div id="character">
+            <div id="character_text">
+              <div id="character_text_content"></div>
+            </div>
+            <div id="qualities"></div>
+          </div>
+          <div class='buttons'>
+            <button id="save">Сохранить</button><button id="erase">Стереть</button>
+          </div>
+        </div>
+      </div> <!-- End of div.tools_wrapper -->
+
+      <div id="mid_panel">
+        <div id="title">
+          <div class="label">
+
+            <h1>Тридцать пять выстрелов</h1>
+            <noscript>
+              <p class="noscript_message">Эта игра требует Javascript.</p>
+            </noscript>
+            <p class="click_message">нажмите, чтобы начать</p>
+          </div>
+        </div>
+
+        <div id="content_wrapper">
+          <div id="content">
+          </div>
+          <a name="end_of_content"></a>
+        </div>
+
+        <div id="legal">
+          <p>Приблизительное время прохождения игры: пятнадцать минут. Но вы схватите идею за пять.</p>
+          <p>Написано при помощи <a href="http://undum.com">Undum</a> и <a href="http://sequitur.github.io/raconteur/">Raconteur</a>.</p>
+        </div>
+      </div>
+    </div> <!-- End of div.page -->
+
+    <div id="ui_library">
+      <div id="quality" class="quality">
+        <span class="name" data-attr="name"></span>
+        <span class="value" data-attr="value"></span>
+      </div>
+
+      <div id="quality_group" class="quality_group">
+        <h2 data-attr="title"></h2>
+        <div class="qualities_in_group">
+        </div>
+      </div>
+
+      <div id="progress_bar" class="progress_bar">
+        <span class="name" data-attr="name"></span>
+        <span class="value" data-attr="value"></span>
+        <div class="progress_bar_track">
+          <div class="progress_bar_color" data-attr="width">
+          </div>
+        </div>
+        <span class="left_label" data-attr="left_label"></span>
+        <span class="right_label" data-attr="right_label"></span>
+      </div>
+
+      <hr id="turn_separator">
+    </div>
+
+    <div id="content_library"></div>
+    <script type="text/javascript" src="game/undum.js"></script>
+    <script type="text/javascript" src="game/bundle.js"></script>
+  </body>
+</html>

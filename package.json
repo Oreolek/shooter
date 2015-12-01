@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "undum": "git://github.com/oreolek/undum-commonjs#commonjs",
+    "raconteur": "git://github.com/sequitur/raconteur.git#stable",
+    "jquery": "^2.1.3",
+    "markdown-it": "^4.1.0",
+    "color": "^0.10.1"
+  },
+  "private": true,
+  "devDependencies": {
+    "babelify": "^6.0.2",
+    "browser-sync": "^2.6.0",
+    "browserify": "^9.0.8",
+    "browserify-shim": "^3.8.8",
+    "coffeeify": "^1.0.0",
+    "gulp": "^3.8.11",
+    "gulp-gzip": "^1.1.0",
+    "gulp-less": "^3.0.2",
+    "gulp-minify-css": "^1.0.0",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.4",
+    "gulp-zip": "^3.0.2",
+    "lodash": "^3.6.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.1.0"
+  }
+}
