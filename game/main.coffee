@@ -16,13 +16,15 @@ markdown = new md({
 })
 undumloc = require("./ru.coffee").language
 undum.language["ru"] = undumloc
+undumloc = require("./en.coffee").language
+undum.language["en"] = undumloc
 
 a = elements.a
 span = elements.span
 img = elements.img
 
 undum.game.id = "7a1aba32-f0fd-4e3b-ba5a-59e3fa9e6012"
-undum.game.version = "0.5"
+undum.game.version = "1.0"
 
 way_to = (content, ref) -> a(content).class('way').ref(ref)
 textlink = (content, ref) -> a(content).once().writer(ref)
@@ -53,7 +55,7 @@ spend_clip = (character, system) ->
   if bullets == 0
     character.sandbox.clips.splice(character.sandbox.current_clip, 1)
     clips = character.sandbox.clips.length
-    writemd(system, "Я выбрасываю пустой картридж.")
+    writemd(system, "emptyclip".l())
     system.setQuality("clips", clips)
   if character.sandbox.current_clip < clips - 1
     character.sandbox.current_clip++
@@ -64,26 +66,15 @@ spend_clip = (character, system) ->
 check_distance = (character, system) ->
   if character.sandbox.distance == 0
     system.setQuality("health", character.qualities.health - 1)
-    system.writemd("Один из андроидов доходит до меня и кусает!")
+    system.writemd("androidattack".l())
 
 situation 'start',
-  content: """
-  -- Проклятье, они продолжают идти!
-
-  Узкий коридор, я и непрекращающаяся очередь сверкающих белоснежной кожей андроидов.
-  Я уверен, что я представлял этот Новый Год совершенно не так.
-
-  Один ящик андроидов содержит тридцать пять машин.
-  Это будет длинная битва.
-  """,
+  content: "intro".l(),
   choices: ["#shoot"],
 
 situation "hit",
   content: (character, system, from) ->
-    response = oneOf(
-      "Голова андроида взрывается снопом сверкающих искр.",
-      "Андроид пытается увернуться, но попадает точнёхонько под пулю. Он падает, разливая масло на пол."
-    ).randomly(system)
+    response = oneOf("player_hit".l()).randomly(system)
     return response()
   choices: ["#shoot"]
   before: (character, system, from) ->
@@ -99,53 +90,24 @@ situation "nicked",
     if character.sandbox.nicked == 1
       system.setQuality("enemies", character.qualities.enemies - 1)
       character.sandbox.nicked = 0
-      response = oneOf(
-        "Я добиваю андроида выстрелом в сердце.",
-        "Я добиваю андроида точным выстрелом",
-        "Пуля пробивает голову андроида, и он наконец падает на пол без движения.",
-      ).randomly(system)
+      response = oneOf("player_finished".l()).randomly(system)
       return response()
     else
       character.sandbox.nicked = 1
-      response = oneOf(
-        "Я отстреливаю ногу врага. Он падает, но продолжает медленно царапать путь ко мне руками."
-        "Я простреливаю руку андроида. Он пошатывается, но продолжает идти."
-      ).randomly(system)
+      response = oneOf("player_nicked".l()).randomly(system)
       return response()
   choices: ["#shoot"]
 
 situation "miss",
   content: (character, system, from) ->
-    response = oneOf(
-      "Пуля пролетает над левым плечом андроида.",
-      "Андроид вовремя уворачивается от выстрела. Ничего, в следующий раз я не промахнусь."
-    ).randomly(system)
+    response = oneOf("player_missed".l()).randomly(system)
     return response()
   choices: ["#shoot"]
 
 situation "shoot",
   tags: ["shoot"],
   optionText: (character, system, from) ->
-    return oneOf(
-      "Выстрел",
-      "Бдыщь!",
-      "Выстрелить",
-      "Нажать на курок",
-      "Атака",
-      "Стрельба",
-      "СТРЕЛЯТЬ!",
-      "УБИТЬ ИХ ИЗ ПИСТОЛЕТА",
-      "НЕНАВИЖУ АНДРОИДОВ",
-      "АННИГИЛЯЦИЯ МЕХАНОИДОВ",
-      "Уничтожить механоидов",
-      "Отправить пулю в андроида",
-      "Послать пулю взрывом",
-      "Нажать на курок во имя ЧЕЛОВЕЧЕСТВА",
-      "Прыгнуть к стене и выстрелить из пистолета в полёте",
-      "Присесть и выстрелить с колена",
-      "Взять пистолет в обе руки и нажать на курок",
-      "Не спеша прицелиться и выстрелить"
-    ).randomly(system)
+    return oneOf("shoot".l()).randomly(system)
   canChoose: (character, system) ->
     return character.qualities.bullets > 0
   before: (character, system, from) ->
@@ -166,7 +128,7 @@ situation "shoot",
 situation "reload",
   tags: ["shoot"],
   choices: ["#shoot"],
-  optionText: "Перезарядить пистолет",
+  optionText: "reload".l(),
   canView: (character, system) ->
     return character.sandbox.seen_reload || character.qualities.bullets < 6
   canChoose: (character, system) ->
@@ -177,12 +139,12 @@ situation "reload",
     character.sandbox.distance--
   after: (character, system) -> 
     spend_clip(character, system)
-    writemd(system, "Я вставляю другой картридж в пистолет. Надеюсь, в нём есть патроны.")
+    writemd(system, "reload_response".l())
     return true
 
 situation "search",
   tags: ["shoot"],
-  optionText: "Искать чужие картриджи",
+  optionText: "search".l(),
   canView: (character, system) ->
     return character.sandbox.seen_search || character.qualities.clips < 5
   canChoose: (character, system) ->
@@ -192,10 +154,7 @@ situation "search",
     character.sandbox.seen_search = 1
     character.sandbox.distance--
   after: (character, system) ->
-    response = oneOf(
-      "Я в спешке шарю по полу, пытаясь найти хотя бы один целый картридж.",
-      "Я быстро оглядываюсь в поисках картриджей на полу."
-    ).randomly(system)
+    response = oneOf("search_response".l()).randomly(system)
     writemd(system, response())
     roll = system.rnd.dice(1,20) # d20 roll
     find_threshold = 10
@@ -215,47 +174,31 @@ situation "found",
     character.sandbox.clips[character.sandbox.clips.length] = bullets
     system.setQuality("clips", character.sandbox.clips.length)
   content: (character, system, from) ->
-    response = oneOf(
-      "Ага! Есть один. Надеюсь, в нём есть патроны.",
-      "А, вот какой-то. На вес тяжёлый -- надеюсь, в нём есть патроны."
-    ).randomly(system)
+    response = oneOf("clips_found".l()).randomly(system)
     return response()
 
 situation "not_found",
   choices: ["#shoot"],
   content: (character, system, from) ->
-    response = oneOf(
-      "Нет, ничего нет.",
-      "Ну хотя бы один! Нет, не нашёл."
-    ).randomly(system)
+    response = oneOf("clips_not_found".l()).randomly(system)
     return response()
 
 situation "finale",
-  content: """
-  Ба-бах!
-  
-  Последний андроид внезапно взрывается, как будто нашпигованный взрывчаткой.
-  А, впрочем, с этими машинами никогда не знаешь наверняка.
-  Я отворачиваюсь и ухожу прочь, не обращая внимания на взрыв.
-
-  Моя работа сделана.
-
-  <center><h3>КОНЕЦ</h3></center>
-  """,
+  content: "finale".l(),
 
 qualities
   head:
-    bullets: qualities.integer('Патронов в картридже'),
-    clips: qualities.integer('Картриджей с патронами'),
-    enemies: qualities.integer('Врагов впереди'),
-    health: qualities.fudgeAdjectives('Здоровье'),
+    bullets: qualities.integer("bullets".l()),
+    clips: qualities.integer("clips".l()),
+    enemies: qualities.integer("enemies".l()),
+    health: qualities.fudgeAdjectives("health".l()),
 
 undum.game.init = (character, system) ->
   system.setQuality("bullets", 6)
   system.setQuality("clips", 6)
   system.setQuality("enemies", 35)
   system.setQuality("health", 3)
-  character.sandbox.clips = [5,5]#[6,6,6,6,6,6]
+  character.sandbox.clips = [6,6,6,6,6,6]
   character.sandbox.current_clip = 0
   character.sandbox.nicked = 0
   character.sandbox.distance = 3
