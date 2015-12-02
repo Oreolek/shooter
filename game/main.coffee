@@ -28,7 +28,7 @@ undum.game.version = "1.0"
 way_to = (content, ref) -> a(content).class('way').ref(ref)
 textlink = (content, ref) -> a(content).once().writer(ref)
 is_visited = (situation) -> undum.game.situations[situation].visited == 1
-writemd = (system, text) -> 
+writemd = (system, text) ->
   if typeof text is Function
     text = text()
   system.write(markdown.render(text))
@@ -151,7 +151,7 @@ situation "reload",
     character.sandbox.seen_reload = 1
     system.clearContent()
     character.sandbox.distance--
-  after: (character, system) -> 
+  after: (character, system) ->
     spend_clip(character, system)
     writemd(system, "reload_response".l())
     return true
@@ -199,9 +199,9 @@ situation "not_found",
 
 situation "finale",
   content: (character, system) ->
-    if character.sandbox.shots == 35
-      return "finale_perfect".l(),
-    return "finale".l(),
+    if character.sandbox.shots < 36
+      return "finale_perfect".l()
+    return "finale".l()
 
 qualities
   head:

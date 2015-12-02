@@ -12,7 +12,8 @@ module.exports.language =
   emptyclip: "I get rid of empty cartridge."
   player_hit:[
     "Android's head explodes like a Christmas fireworks.",
-    "Android tries to dodge but finds himself right on the bullet's wrong side. He falls, flooding the floor with oil."
+    "Android tries to dodge but finds himself right on the bullet's wrong side.
+    He falls, flooding the floor with oil."
   ]
   player_finished:[
     "I finish the android with a shot to his heart.",
@@ -20,7 +21,8 @@ module.exports.language =
     "The bullet pierces android's head and he finally falls on the floor motionless.",
   ]
   player_nicked:[
-    "I shoot the enemy's leg off. He falls but keeps slowly scratch his way with his hands.",
+    """I shoot the enemy's leg off.
+    He falls but keeps slowly scratch his way with his hands.""",
     "I shoot through the android's arm. He stumbles but keeps going.",
   ]
   shoot:[
@@ -46,7 +48,10 @@ module.exports.language =
     "Slowly take aim and shoot",
   ]
   reload: "Reload the pistol",
-  reload_response: "I put another clip in the pistol. I hope it has some ammo."
+  reload_response: """
+  I put another clip in the pistol.
+  I hope it has some ammo.
+  """
   search: "Search for a clip"
   search_response:[
     "I hastily search the floor, trying to find at least one cartridge intact.",
@@ -54,7 +59,7 @@ module.exports.language =
   ]
   finale: """
     KABOOM!
-  
+
     The last android suddenly explodes like larded with dynamite.
     Eh, with these machines you never know.
     I turn around and go away, not looking at the fire.
