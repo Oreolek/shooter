@@ -82,12 +82,30 @@ module.exports.language =
 
     <center><h3>КОНЕЦ</h3></center>
 
-    Использованные звуковые эффекты:
+    В игре использованы следующие звуковые эффекты и изображения в общественном достоянии и под лицензией CC-BY:
 
     * SpartanX109 - [Desert Eagle Fire.mp3](http://freesound.org/people/SpartanX109/sounds/89147/)
     * ngphil22 - [DEagle wCasing.mp3](http://freesound.org/people/ngphil22/sounds/233322/)
     * watupgroupie - [gunshots.mp3](http://freesound.org/people/watupgroupie/sounds/36815/)
+    * qubodup - [Bullet silhoettes](https://openclipart.org/detail/29029/bullet-silhouettes)
     """
+  finale_perfect: """
+    35 выстрелов.
+    Вот всё, что потребовалось.
+    Была ли это невероятная удача, или вмешательство высшей силы, но ещё осталось много времени.
+
+    Моя работа сделана.
+    А теперь Новый Год будет таким, каким он должен быть.
+
+    <center><h3>КОНЕЦ</h3></center>
+
+    В игре использованы следующие звуковые эффекты и изображения в общественном достоянии и под лицензией CC-BY:
+
+    * SpartanX109 - [Desert Eagle Fire.mp3](http://freesound.org/people/SpartanX109/sounds/89147/)
+    * ngphil22 - [DEagle wCasing.mp3](http://freesound.org/people/ngphil22/sounds/233322/)
+    * watupgroupie - [gunshots.mp3](http://freesound.org/people/watupgroupie/sounds/36815/)
+    * qubodup - [Bullet silhoettes](https://openclipart.org/detail/29029/bullet-silhouettes)
+  """
   clips_not_found:[
     "Нет, ничего нет.",
     "Ну хотя бы один! Нет, не нашёл."

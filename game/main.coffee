@@ -42,6 +42,7 @@ Array.prototype.oneOf = () ->
 
 spend_bullet = (character, system) ->
   bullets = character.sandbox.clips[character.sandbox.current_clip]
+  character.sandbox.shots++
   if bullets >= 1
     coin = system.rnd.randomInt(1,2)
     audio = 'shot1'
@@ -197,7 +198,10 @@ situation "not_found",
     return response()
 
 situation "finale",
-  content: "finale".l(),
+  content: (character, system) ->
+    if character.sandbox.shots == 35
+      return "finale_perfect".l(),
+    return "finale".l(),
 
 qualities
   head:
@@ -217,6 +221,7 @@ undum.game.init = (character, system) ->
   character.sandbox.distance = 3
   character.sandbox.seen_reload = 0
   character.sandbox.seen_search = 0
+  character.sandbox.shots = 0
   $("#title").click(() ->
     $("#clip").fadeIn()
   )

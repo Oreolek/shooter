@@ -63,12 +63,30 @@ module.exports.language =
 
     <center><h3>THE END</h3></center>
 
-    The game used the following sound effects:
+    The game uses following CC-BY and public domain sound effects and images:
 
     * SpartanX109 - [Desert Eagle Fire.mp3](http://freesound.org/people/SpartanX109/sounds/89147/)
     * ngphil22 - [DEagle wCasing.mp3](http://freesound.org/people/ngphil22/sounds/233322/)
     * watupgroupie - [gunshots.mp3](http://freesound.org/people/watupgroupie/sounds/36815/)
+    * qubodup - [Bullet silhoettes](https://openclipart.org/detail/29029/bullet-silhouettes)
     """
+  finale_perfect: """
+    35 shots.
+    That's all it took.
+    Whether by impossible luck or by some higher being's meddling, there's still a lot of time left.
+
+    My job is done.
+    Now I can have a good New Year.
+
+    <center><h3>THE END</h3></center>
+
+    The game uses following CC-BY and public domain sound effects and images:
+
+    * SpartanX109 - [Desert Eagle Fire.mp3](http://freesound.org/people/SpartanX109/sounds/89147/)
+    * ngphil22 - [DEagle wCasing.mp3](http://freesound.org/people/ngphil22/sounds/233322/)
+    * watupgroupie - [gunshots.mp3](http://freesound.org/people/watupgroupie/sounds/36815/)
+    * qubodup - [Bullet silhoettes](https://openclipart.org/detail/29029/bullet-silhouettes)
+  """
   clips_not_found:[
     "No, nothing here.",
     "Come on, at least one! No, didn't find any."
