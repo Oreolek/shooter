@@ -4,11 +4,9 @@
 
 situation = require('raconteur')
 undum = require('undum-commonjs')
-$ = require('jquery')
 oneOf = require('raconteur/lib/oneOf.js')
 elements = require('raconteur/lib/elements.js')
 qualities = require('raconteur/lib/qualities.js')
-colour = require("color")
 md = require('markdown-it')
 markdown = new md({
   typographer: true,
@@ -18,6 +16,7 @@ undumloc = require("./ru.coffee").language
 undum.language["ru"] = undumloc
 undumloc = require("./en.coffee").language
 undum.language["en"] = undumloc
+$ = require("jquery")
 
 a = elements.a
 span = elements.span
@@ -33,8 +32,8 @@ writemd = (system, text) ->
   if typeof text is Function
     text = text()
   system.write(markdown.render(text))
-
-link_colour = "#B68000"
+Array.prototype.oneOf = () ->
+  oneOf.apply(null, this)
 
 # This is an easy game.
 # I'm thinking if you want more harder approach, you can:
@@ -44,14 +43,26 @@ link_colour = "#B68000"
 spend_bullet = (character, system) ->
   bullets = character.sandbox.clips[character.sandbox.current_clip]
   if bullets >= 1
+    coin = system.rnd.randomInt(1,2)
+    audio = 'shot1'
+    if coin == 2
+      audio = 'shot2'
+    audio = document.getElementById(audio)
+    audio.currentTime=0
+    audio.play()
     character.sandbox.clips[character.sandbox.current_clip]--
-    system.setQuality("bullets", bullets - 1)
+    bullets--
+    system.setQuality("bullets", bullets)
+    $("#clip img").attr("src", "img/clip"+bullets+".png")
 
 spend_clip = (character, system) ->
   bullets = character.sandbox.clips[character.sandbox.current_clip]
   clips = character.sandbox.clips.length
   if clips < 2
     return
+  audio = document.getElementById("reload")
+  audio.currentTime=0
+  audio.play()
   if bullets == 0
     character.sandbox.clips.splice(character.sandbox.current_clip, 1)
     clips = character.sandbox.clips.length
@@ -61,7 +72,9 @@ spend_clip = (character, system) ->
     character.sandbox.current_clip++
   else
     character.sandbox.current_clip = 0
-  system.setQuality("bullets", character.sandbox.clips[character.sandbox.current_clip])
+  bullets = character.sandbox.clips[character.sandbox.current_clip]
+  system.setQuality("bullets", bullets)
+  $("#clip img").attr("src", "img/clip"+bullets+".png")
 
 check_distance = (character, system) ->
   if character.sandbox.distance == 0
@@ -74,7 +87,7 @@ situation 'start',
 
 situation "hit",
   content: (character, system, from) ->
-    response = oneOf("player_hit".l()).randomly(system)
+    response = "player_hit".l().oneOf().randomly(system)
     return response()
   choices: ["#shoot"]
   before: (character, system, from) ->
@@ -90,24 +103,24 @@ situation "nicked",
     if character.sandbox.nicked == 1
       system.setQuality("enemies", character.qualities.enemies - 1)
       character.sandbox.nicked = 0
-      response = oneOf("player_finished".l()).randomly(system)
+      response = "player_finished".l().oneOf().randomly(system)
       return response()
     else
       character.sandbox.nicked = 1
-      response = oneOf("player_nicked".l()).randomly(system)
+      response = "player_nicked".l().oneOf().randomly(system)
       return response()
   choices: ["#shoot"]
 
 situation "miss",
   content: (character, system, from) ->
-    response = oneOf("player_missed".l()).randomly(system)
+    response = "player_missed".l().oneOf().randomly(system)
     return response()
   choices: ["#shoot"]
 
 situation "shoot",
   tags: ["shoot"],
   optionText: (character, system, from) ->
-    return oneOf("shoot".l()).randomly(system)
+    return "shoot".l().oneOf().randomly(system)
   canChoose: (character, system) ->
     return character.qualities.bullets > 0
   before: (character, system, from) ->
@@ -154,7 +167,7 @@ situation "search",
     character.sandbox.seen_search = 1
     character.sandbox.distance--
   after: (character, system) ->
-    response = oneOf("search_response".l()).randomly(system)
+    response = "search_response".l().oneOf().randomly(system)
     writemd(system, response())
     roll = system.rnd.dice(1,20) # d20 roll
     find_threshold = 10
@@ -174,13 +187,13 @@ situation "found",
     character.sandbox.clips[character.sandbox.clips.length] = bullets
     system.setQuality("clips", character.sandbox.clips.length)
   content: (character, system, from) ->
-    response = oneOf("clips_found".l()).randomly(system)
+    response = "clips_found".l().oneOf().randomly(system)
     return response()
 
 situation "not_found",
   choices: ["#shoot"],
   content: (character, system, from) ->
-    response = oneOf("clips_not_found".l()).randomly(system)
+    response = "clips_not_found".l().oneOf().randomly(system)
     return response()
 
 situation "finale",
@@ -204,5 +217,8 @@ undum.game.init = (character, system) ->
   character.sandbox.distance = 3
   character.sandbox.seen_reload = 0
   character.sandbox.seen_search = 0
+  $("#title").click(() ->
+    $("#clip").fadeIn()
+  )
 
 window.onload = undum.begin

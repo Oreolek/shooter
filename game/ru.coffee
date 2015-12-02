@@ -81,6 +81,12 @@ module.exports.language =
     Моя работа сделана.
 
     <center><h3>КОНЕЦ</h3></center>
+
+    Использованные звуковые эффекты:
+
+    * SpartanX109 - [Desert Eagle Fire.mp3](http://freesound.org/people/SpartanX109/sounds/89147/)
+    * ngphil22 - [DEagle wCasing.mp3](http://freesound.org/people/ngphil22/sounds/233322/)
+    * watupgroupie - [gunshots.mp3](http://freesound.org/people/watupgroupie/sounds/36815/)
     """
   clips_not_found:[
     "Нет, ничего нет.",

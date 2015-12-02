@@ -9,43 +9,23 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <div id="toolbar">
-      <h1>Thirty five shots</h1>
-      <div class="nav">
-        <a href="#" class="button" id="menu-button">Menu</a>
-      </div>
-    </div>
-    <ul id="menu">
-      <li><a href="#title, #content_wrapper">Story</a></li>
-      <li><a href="#character_panel">Character</a></li>
-    </ul>
-
     <div id="page">
-
-      <div id="tools_wrapper">
-        <div id="character_panel" class="tools right">
-          <div id="character">
-            <div id="character_text">
-              <div id="character_text_content"></div>
-            </div>
-            <div id="qualities"></div>
-          </div>
-          <div class='buttons'>
-            <button id="save">Save</button><button id="erase">Erase</button>
-          </div>
-        </div>
-      </div> <!-- End of div.tools_wrapper -->
 
       <div id="mid_panel">
         <div id="title">
           <div class="label">
 
             <h1>Thirty five shots</h1>
+            <h3>An online sci-fi first person text shooter</h3>
+            <p>by <b><a href="http://en.oreolek.ru/">Oreolek</a></b></p>
             <noscript>
               <p class="noscript_message">This game requires Javascript.</p>
             </noscript>
             <p class="click_message">click to play</p>
           </div>
+        </div>
+        <div id="clip">
+          <p><img src="img/clip6.png"></p>
         </div>
 
         <div id="content_wrapper">
@@ -58,6 +38,7 @@
           <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" class="footright"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
           <p>Approximate play time: five minites.</p>
           <p>Made using <a href="http://undum.com">Undum</a> and <a href="http://sequitur.github.io/raconteur/">Raconteur</a>.</p>
+          <p>Betatesting credit: headless zombie</p>
         </div>
       </div>
     </div> <!-- End of div.page -->
@@ -89,6 +70,9 @@
     </div>
 
     <div id="content_library"></div>
+    <audio id="shot1" preload="auto"><source src="audio/fire.mp3" type='audio/mpeg; codecs="mp3"'></audio>
+    <audio id="shot2" preload="auto"><source src="audio/casing.mp3" type='audio/mpeg; codecs="mp3"'></audio>
+    <audio id="reload" preload="auto"><source src="audio/reload.mp3" type='audio/mpeg; codecs="mp3"'></audio>
     <script type="text/javascript" src="game/undum.js"></script>
     <script type="text/javascript" src="game/bundle.js"></script>
   </body>

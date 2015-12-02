@@ -38,8 +38,16 @@ function img (target) {
     };
 }
 
+function audio (target) {
+  return function () {
+    return gulp.src(['audio/*.mp3'])
+          .pipe(gulp.dest(target));
+    };
+}
+
 gulp.task('html', html('./build'));
 gulp.task('img', img('./build/img'));
+gulp.task('audio', audio('./build/audio'));
 
 /* Less */
 
@@ -83,7 +91,7 @@ function bundle () {
 
 /* Make a development build */
 
-gulp.task('build', ['html', 'img', 'less', 'coffee'], function () {
+gulp.task('build', ['html', 'img', 'less', 'coffee', 'audio'], function () {
 
 });
 
@@ -124,6 +132,7 @@ gulp.task('undum-dist', function () {
 
 gulp.task('html-dist', html('./dist'));
 gulp.task('img-dist', img('./dist/img'));
+gulp.task('audio-dist', img('./dist/audio'));
 
 gulp.task('less-dist', function () {
   return gulp.src('./less/main.less')
@@ -149,7 +158,7 @@ gulp.task('coffee-dist', ['undum-dist'], function () {
         .pipe(gulp.dest('./dist/game'));
 });
 
-gulp.task('dist', ['html-dist', 'img-dist', 'less-dist', 'coffee-dist'],
+gulp.task('dist', ['html-dist', 'img-dist', 'less-dist', 'coffee-dist', 'audio-dist'],
   function () {
     return;
 });

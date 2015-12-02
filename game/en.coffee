@@ -62,6 +62,12 @@ module.exports.language =
     My job is done.
 
     <center><h3>THE END</h3></center>
+
+    The game used the following sound effects:
+
+    * SpartanX109 - [Desert Eagle Fire.mp3](http://freesound.org/people/SpartanX109/sounds/89147/)
+    * ngphil22 - [DEagle wCasing.mp3](http://freesound.org/people/ngphil22/sounds/233322/)
+    * watupgroupie - [gunshots.mp3](http://freesound.org/people/watupgroupie/sounds/36815/)
     """
   clips_not_found:[
     "No, nothing here.",
