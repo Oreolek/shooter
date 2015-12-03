@@ -40,6 +40,16 @@ Array.prototype.oneOf = () ->
 # a) remove bullet counter (you don't know how many bullets left in a clip)
 # b) remove canChoose restriction (you can shoot any time you want, but if you have no bullets - nothing comes out and you've lost a turn)
 
+kill_enemy = (character, system) ->
+  if character.qualities.enemies == 0
+    return
+  character.sandbox.nicked = 0
+  character.sandbox.killed++
+  if character.qualities.enemies >= 1
+    system.setQuality("enemies", character.qualities.enemies - 1)
+  if character.qualities.enemies == 0
+    system.doLink("finale")
+
 spend_bullet = (character, system) ->
   bullets = character.sandbox.clips[character.sandbox.current_clip]
   character.sandbox.shots++
@@ -77,11 +87,6 @@ spend_clip = (character, system) ->
   system.setQuality("bullets", bullets)
   $("#clip img").attr("src", "img/clip"+bullets+".png")
 
-check_distance = (character, system) ->
-  if character.sandbox.distance == 0
-    system.setQuality("health", character.qualities.health - 1)
-    system.writemd("androidattack".l())
-
 situation 'start',
   content: "intro".l(),
   choices: ["#shoot"],
@@ -92,18 +97,13 @@ situation "hit",
     return response()
   choices: ["#shoot"]
   before: (character, system, from) ->
-    character.sandbox.nicked = 0
-    if character.qualities.enemies > 1
-      system.setQuality("enemies", character.qualities.enemies - 1)
-    if character.qualities.enemies == 0
-      system.doLink("finale")
+    kill_enemy(character, system)
   choices: ["#shoot"]
 
 situation "nicked",
   content: (character, system, from) ->
     if character.sandbox.nicked == 1
-      system.setQuality("enemies", character.qualities.enemies - 1)
-      character.sandbox.nicked = 0
+      kill_enemy(character, system)
       response = "player_finished".l().oneOf().randomly(system)
       return response()
     else
@@ -118,6 +118,15 @@ situation "miss",
     return response()
   choices: ["#shoot"]
 
+situation "trick",
+  before: (character, system, from) ->
+    kill_enemy(character, system)
+    kill_enemy(character, system)
+  content: (character, system, from) ->
+    response = "player_trickshot".l().oneOf().randomly(system)
+    return response()
+  choices: ["#shoot"]
+
 situation "shoot",
   tags: ["shoot"],
   optionText: (character, system, from) ->
@@ -126,15 +135,34 @@ situation "shoot",
     return character.qualities.bullets > 0
   before: (character, system, from) ->
     spend_bullet(character, system)
-    character.sandbox.distance = 3
     system.clearContent()
   after: (character, system, from) ->
     roll = system.rnd.dice(1,20) # d20 roll
     hit_threshold = 15
     miss_threshold = 18
-    if character.qualities.health < 2
-      hit_threshold = 18
     switch
+      when roll < hit_threshold then system.doLink("hit")
+      when roll > miss_threshold then system.doLink("miss")
+      else system.doLink("nicked")
+
+situation "trick_shot",
+  tags: ["shoot"],
+  optionText: (character, system, from) ->
+    return "trick_shot".l()
+  canView: (character, system) ->
+    return character.sandbox.trick_shot == 1
+  canChoose: (character, system) ->
+    return character.qualities.bullets > 0
+  before: (character, system, from) ->
+    spend_bullet(character, system)
+    system.clearContent()
+  after: (character, system, from) ->
+    roll = system.rnd.dice(1,20) # d20 roll
+    trick_threshold = 5
+    hit_threshold = 12
+    miss_threshold = 16
+    switch
+      when roll < trick_threshold then system.doLink("trick")
       when roll < hit_threshold then system.doLink("hit")
       when roll > miss_threshold then system.doLink("miss")
       else system.doLink("nicked")
@@ -150,10 +178,12 @@ situation "reload",
   before: (character, system) ->
     character.sandbox.seen_reload = 1
     system.clearContent()
-    character.sandbox.distance--
   after: (character, system) ->
     spend_clip(character, system)
     writemd(system, "reload_response".l())
+    if character.sandbox.trick_shot == 0 and character.sandbox.clips.length == 4
+      character.sandbox.trick_shot = 1
+      writemd(system, "trick_shot_discover".l()(character))
     return true
 
 situation "search",
@@ -166,16 +196,11 @@ situation "search",
   before: (character, system) ->
     system.clearContent()
     character.sandbox.seen_search = 1
-    character.sandbox.distance--
   after: (character, system) ->
     response = "search_response".l().oneOf().randomly(system)
     writemd(system, response())
     roll = system.rnd.dice(1,20) # d20 roll
     find_threshold = 10
-    if character.qualities.health < 2
-      find_threshold += 2
-    if character.sandbox.distance < 2
-      find_threshold += 2
     if roll < find_threshold
       system.doLink("found")
     else
@@ -208,20 +233,19 @@ qualities
     bullets: qualities.integer("bullets".l()),
     clips: qualities.integer("clips".l()),
     enemies: qualities.integer("enemies".l()),
-    health: qualities.fudgeAdjectives("health".l()),
 
 undum.game.init = (character, system) ->
   system.setQuality("bullets", 6)
   system.setQuality("clips", 6)
   system.setQuality("enemies", 35)
-  system.setQuality("health", 3)
   character.sandbox.clips = [6,6,6,6,6,6]
   character.sandbox.current_clip = 0
   character.sandbox.nicked = 0
-  character.sandbox.distance = 3
   character.sandbox.seen_reload = 0
   character.sandbox.seen_search = 0
+  character.sandbox.trick_shot = 0
   character.sandbox.shots = 0
+  character.sandbox.killed = 0
   $("#title").click(() ->
     $("#clip").fadeIn()
   )

@@ -132,7 +132,7 @@ gulp.task('undum-dist', function () {
 
 gulp.task('html-dist', html('./dist'));
 gulp.task('img-dist', img('./dist/img'));
-gulp.task('audio-dist', img('./dist/audio'));
+gulp.task('audio-dist', audio('./dist/audio'));
 
 gulp.task('less-dist', function () {
   return gulp.src('./less/main.less')

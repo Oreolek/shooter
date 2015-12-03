@@ -10,22 +10,22 @@ module.exports.language =
   """
   androidattack: "One of androids is so close he bites me!"
   emptyclip: "I get rid of empty cartridge."
-  player_hit:[
+  player_hit: [
     "Android's head explodes like a Christmas fireworks.",
     "Android tries to dodge but finds himself right on the bullet's wrong side.
     He falls, flooding the floor with oil."
   ]
-  player_finished:[
+  player_finished: [
     "I finish the android with a shot to his heart.",
     "I finish the android with a precise shot.",
     "The bullet pierces android's head and he finally falls on the floor motionless.",
   ]
-  player_nicked:[
+  player_nicked: [
     """I shoot the enemy's leg off.
     He falls but keeps slowly scratch his way with his hands.""",
     "I shoot through the android's arm. He stumbles but keeps going.",
   ]
-  shoot:[
+  shoot: [
     "Shoot",
     "BAM!",
     "BLAM!",
@@ -42,7 +42,6 @@ module.exports.language =
     "Send a bullet to android",
     "Send a bullet with explosion",
     "Push the trigger FOR THE HUMANITY",
-    "Jump to a wall and shoot while flying",
     "Sit down and shoot from a hip",
     "Take the pistol in both hands and push the trigger",
     "Slowly take aim and shoot",
@@ -53,7 +52,7 @@ module.exports.language =
   I hope it has some ammo.
   """
   search: "Search for a clip"
-  search_response:[
+  search_response: [
     "I hastily search the floor, trying to find at least one cartridge intact.",
     "I quickly look around for a clip on the floor.",
   ]
@@ -92,20 +91,39 @@ module.exports.language =
     * watupgroupie - [gunshots.mp3](http://freesound.org/people/watupgroupie/sounds/36815/)
     * qubodup - [Bullet silhoettes](https://openclipart.org/detail/29029/bullet-silhouettes)
   """
-  clips_not_found:[
+  clips_not_found: [
     "No, nothing here.",
-    "Come on, at least one! No, didn't find any."
+    "Come on, at least one! No, didn't find any.",
   ]
-  health: 'Health'
   enemies: 'Enemies ahead'
   clips: 'Cartridges'
   bullets: 'Bullets in clip'
-  clips_found:[
-    "Aha! Got one. I hope it has some ammo.",
+  clips_found: [
+    'Aha! Got one. I hope it has some ammo.',
     "Eh, here's one. Looks heavy -- I hope it has some ammo.",
   ]
-  player_missed:[
+  player_missed: [
     "The bullet flies over android's left arm.",
     "Android dodges the shot. It's alright, next time I won't miss.",
     "Damn! Missed.",
   ]
+  trick_shot: "Try a trick shot"
+  player_trickshot: [
+    "
+      I run against a wall and jump, shooting while flying.
+      The bullet flies through android's head into another one, knocking them both out.
+    ",
+    "
+      I notice a weak spot in the ceiling.
+      A single shot there - and a section collapses, taking two enemies out.
+    ",
+  ]
+  trick_shot_discover: (character) ->
+    """
+      I count the clips.
+      Only four left.
+      I've killed #{character.sandbox.killed} androids, meaning, there are still... oh.
+      OH.
+      I gotta conserve the ammo.
+      I can try trick shots but these are big risk.
+    """
