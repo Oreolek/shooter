@@ -27,6 +27,9 @@ undum.game.version = "1.0"
 
 way_to = (content, ref) -> a(content).class('way').ref(ref)
 textlink = (content, ref) -> a(content).once().writer(ref)
+# The next line doesn't work for whatever reason:
+#textcycle = (content, ref) -> span(a(content).replacer(ref)).class("cycle").id(ref)
+textcycle = (content, ref) -> "<span id='#{ref}' class='cycle'><a href='./_replacer_#{ref}'>#{content}</a></span>"
 is_visited = (situation) -> undum.game.situations[situation].visited == 1
 writemd = (system, text) ->
   if typeof text is Function
@@ -86,6 +89,9 @@ spend_clip = (character, system) ->
   bullets = character.sandbox.clips[character.sandbox.current_clip]
   system.setQuality("bullets", bullets)
   $("#clip img").attr("src", "img/clip"+bullets+".png")
+  if character.sandbox.killed > 15 and character.sandbox.seen_pacifist == 0
+    system.doLink("pacifist")
+    character.sandbox.seen_pacifist = 1
 
 situation 'start',
   content: "intro".l(),
@@ -228,6 +234,35 @@ situation "finale",
       return "finale_perfect".l()
     return "finale".l()
 
+situation "pacifist",
+  choices: ["#pacifist"],
+  content: (character, system) ->
+    return "pacifist".l()
+
+situation "shoot_pacifist",
+  optionText: "Убить пацифиста",
+  tags: "pacifist",
+  choices: ["#shoot"],
+  before: (character, system) ->
+    character.sandbox.shot_pacifist = 1
+  content: (character, system) ->
+    link = textcycle("head".l(), "leg")
+    console.log(link)
+    return "shoot_pacifist".l()(link)
+  writers:
+    head: textcycle("head".l(), "leg")
+    leg: textcycle("leg".l(), "arm")
+    arm: textcycle("arm".l(), "head")
+
+situation "spare_pacifist",
+  optionText: "Опустить оружие",
+  tags: "pacifist",
+  before: (character, system) ->
+    character.sandbox.shot_pacifist = 0
+  choices: ["#shoot"],
+  content: (character, system) ->
+    return "spare_pacifist".l()
+
 qualities
   head:
     bullets: qualities.integer("bullets".l()),
@@ -246,6 +281,8 @@ undum.game.init = (character, system) ->
   character.sandbox.trick_shot = 0
   character.sandbox.shots = 0
   character.sandbox.killed = 0
+  character.sandbox.seen_pacifist = 0
+  character.sandbox.shot_pacifist = undefined
   $("#title").click(() ->
     $("#clip").fadeIn()
   )

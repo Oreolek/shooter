@@ -127,3 +127,31 @@ module.exports.language =
       I gotta conserve the ammo.
       I can try trick shots but these are big risk.
     """
+  pacifist: """
+    -- Don't shoot! I'm a pacifist!
+
+    One of the androids raises hands.
+    His face is a mask of pleading.
+  """
+  shoot_pacifist: (link) -> """
+    I shoot through his shiny metal #{link}.
+    His comrades push him forward and knock him on the floor.
+    The next in the corridor steps on his head and stomps on his torso.
+    The weird android lies motionless, but his place is already taken by other, a normal one.
+  """
+  head: "head"
+  arm: "arm"
+  leg: "leg"
+  spare_pacifist: """
+    I put down the pistol.
+
+    -- Thank you! -- cries the weird android. -- I'll surely...
+
+    He gets knocked from behind and falls on the floor, face down.
+
+    -- Directive A028. Deviant behaviour. Destroy.
+
+    The following android delivers a hard blow to pacifist's nape.
+    He walks over the motionless body and looks at me with his evil eyes.
+    I guess the battle continues.
+  """
