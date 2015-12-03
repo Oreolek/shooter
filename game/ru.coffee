@@ -79,13 +79,13 @@ module.exports.language =
 
     Моя работа сделана.
 
-    <center><h3>КОНЕЦ</h3></center>
+    <h3>КОНЕЦ</h3>
 
     В игре использованы следующие звуковые эффекты и изображения в общественном достоянии и под лицензией CC-BY:
 
-    * SpartanX109 - [Desert Eagle Fire.mp3](http://freesound.org/people/SpartanX109/sounds/89147/)
-    * ngphil22 - [DEagle wCasing.mp3](http://freesound.org/people/ngphil22/sounds/233322/)
-    * watupgroupie - [gunshots.mp3](http://freesound.org/people/watupgroupie/sounds/36815/)
+    * SpartanX109 - [Desert Eagle Fire](http://freesound.org/people/SpartanX109/sounds/89147/)
+    * ngphil22 - [DEagle wCasing](http://freesound.org/people/ngphil22/sounds/233322/)
+    * watupgroupie - [gunshots](http://freesound.org/people/watupgroupie/sounds/36815/)
     * qubodup - [Bullet silhoettes](https://openclipart.org/detail/29029/bullet-silhouettes)
     """
   finale_perfect: """
@@ -96,13 +96,13 @@ module.exports.language =
     Моя работа сделана.
     А теперь Новый Год будет таким, каким он должен быть.
 
-    <center><h3>КОНЕЦ</h3></center>
+    <h3>КОНЕЦ</h3>
 
     В игре использованы следующие звуковые эффекты и изображения в общественном достоянии и под лицензией CC-BY:
 
-    * SpartanX109 - [Desert Eagle Fire.mp3](http://freesound.org/people/SpartanX109/sounds/89147/)
-    * ngphil22 - [DEagle wCasing.mp3](http://freesound.org/people/ngphil22/sounds/233322/)
-    * watupgroupie - [gunshots.mp3](http://freesound.org/people/watupgroupie/sounds/36815/)
+    * SpartanX109 - [Desert Eagle Fire](http://freesound.org/people/SpartanX109/sounds/89147/)
+    * ngphil22 - [DEagle wCasing](http://freesound.org/people/ngphil22/sounds/233322/)
+    * watupgroupie - [gunshots](http://freesound.org/people/watupgroupie/sounds/36815/)
     * qubodup - [Bullet silhoettes](https://openclipart.org/detail/29029/bullet-silhouettes)
   """
   clips_not_found:[
@@ -132,13 +132,11 @@ module.exports.language =
       Я могу попробовать хитрые выстрелы, но это -- большой риск.
     """
   player_trickshot: [
-    """
-      Я разбегаюсь к стене и прыгаю, стреляя в полёте.
-      Пуля пролетает сквозь голову андроида прямо в следующего, вырубая обоих.
+    """Я разбегаюсь к стене и прыгаю, стреляя в полёте.
+    Пуля пролетает сквозь голову андроида прямо в следующего, вырубая обоих.
     """,
-    """
-      Я замечаю слабое место в потолке.
-      Один выстрел туда -- и секция разваливается, убирая под собой двух врагов.
+    """Я замечаю слабое место в потолке.
+    Один выстрел туда -- и секция разваливается, убирая под собой двух врагов.
     """
   ]
   pacifist: """

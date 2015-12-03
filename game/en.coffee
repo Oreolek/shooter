@@ -65,7 +65,7 @@ module.exports.language =
 
     My job is done.
 
-    <center><h3>THE END</h3></center>
+    <h3>THE END</h3>
 
     The game uses following CC-BY and public domain sound effects and images:
 
@@ -82,7 +82,7 @@ module.exports.language =
     My job is done.
     Now I can have a good New Year.
 
-    <center><h3>THE END</h3></center>
+    <h3>THE END</h3>
 
     The game uses following CC-BY and public domain sound effects and images:
 
