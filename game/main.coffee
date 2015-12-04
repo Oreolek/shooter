@@ -92,10 +92,27 @@ spend_clip = (character, system) ->
   if character.sandbox.killed > 15 and character.sandbox.seen_pacifist == 0
     system.doLink("pacifist")
     character.sandbox.seen_pacifist = 1
+  if character.sandbox.killed > 21
+    setTimeout( play_step(0.2), 1500)
+
+play_step = (volume) ->
+  rand = Math.random();
+  step1 = document.getElementById("step1")
+  step2 = document.getElementById("step2")
+  audio = step1
+  if rand > 0.5
+    audio = step2
+  audio.currentTime = 0
+  audio.volume = volume
+  audio.play()
 
 situation 'start',
-  content: "intro".l(),
+  content: () ->
+    link = textcycle("head".l(), "leg")
+    return "intro".l()(link)
   choices: ["#shoot"],
+  writers:
+    leg: ""
 
 situation "hit",
   content: (character, system, from) ->
@@ -247,7 +264,6 @@ situation "shoot_pacifist",
     character.sandbox.shot_pacifist = 1
   content: (character, system) ->
     link = textcycle("head".l(), "leg")
-    console.log(link)
     return "shoot_pacifist".l()(link)
   writers:
     head: textcycle("head".l(), "leg")

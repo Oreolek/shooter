@@ -18,7 +18,7 @@ module.exports.language =
   random_error: "Проинициализируйте Random с непустым зерном перед использованием."
   dice_string_error: "не могу интерпретировать вашу cтроку кубиков: '{string}'."
   erase_message: "Это навсегда удалит вашего персонажа и немедленно вернёт вас на старт игры. Вы уверены?"
-  intro: """
+  intro: (link) -> """
   -- Проклятье, они продолжают идти!
 
   Узкий коридор, я и непрекращающаяся очередь сверкающих белоснежной кожей андроидов.
@@ -86,6 +86,7 @@ module.exports.language =
     * SpartanX109 - [Desert Eagle Fire](http://freesound.org/people/SpartanX109/sounds/89147/)
     * ngphil22 - [DEagle wCasing](http://freesound.org/people/ngphil22/sounds/233322/)
     * watupgroupie - [gunshots](http://freesound.org/people/watupgroupie/sounds/36815/)
+    * Yoyodaman234 - [metal footstep 1](http://freesound.org/people/Yoyodaman234/sounds/223168/)
     * qubodup - [Bullet silhoettes](https://openclipart.org/detail/29029/bullet-silhouettes)
     """
   finale_perfect: """
