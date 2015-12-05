@@ -27,9 +27,7 @@ undum.game.version = "2.0"
 
 way_to = (content, ref) -> a(content).class('way').ref(ref)
 textlink = (content, ref) -> a(content).once().writer(ref)
-# The next line doesn't work for whatever reason:
-#textcycle = (content, ref) -> span(a(content).replacer(ref)).class("cycle").id(ref)
-textcycle = (content, ref) -> "<span id='#{ref}' class='cycle'><a href='./_replacer_#{ref}'>#{content}</a></span>"
+textcycle = (content, ref) -> a(content).replacer(ref).class("cycle").id(ref)
 is_visited = (situation) -> undum.game.situations[situation].visited == 1
 writemd = (system, text) ->
   if typeof text is Function
