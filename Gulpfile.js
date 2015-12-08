@@ -89,7 +89,12 @@ gulp.task('copyTranslations', [], function() {
 });
 
 gulp.task('concatCoffee', ['copyTranslations'], function() {
-  return gulp.src('./game/*.coffee')
+  return gulp.src([
+      './game/begin.coffee',
+      './game/gameplay.coffee',
+      './game/story.coffee',
+      './game/end.coffee',
+    ])
     .pipe(concat('./main.coffee'))
     .pipe(gulp.dest('./build/game'));
 });

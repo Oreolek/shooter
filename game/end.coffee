@@ -1,3 +1,4 @@
+
 qualities
   head:
     bullets: qualities.integer("bullets".l()),
@@ -18,7 +19,6 @@ undum.game.init = (character, system) ->
   character.sandbox.killed = 0
   character.sandbox.seen_pacifist = 0
   character.sandbox.shot_pacifist = undefined
-  window.is_visited = (situation) -> undum.game.situations[situation].visited == 1
   $("#title").click(() ->
     $("#clip").fadeIn()
   )

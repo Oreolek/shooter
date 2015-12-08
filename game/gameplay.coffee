@@ -1,20 +1,3 @@
-situation = require('raconteur')
-$ = require("jquery")
-md = require('markdown-it')
-markdown = new md({
-  typographer: true,
-  html: true
-})
-
-a = require('raconteur/lib/elements.js').a
-way_to = (content, ref) -> a(content).class('way').ref(ref)
-textlink = (content, ref) -> a(content).once().writer(ref)
-textcycle = (content, ref) -> a(content).replacer(ref).class("cycle").id(ref)
-writemd = (system, text) ->
-  if typeof text is Function
-    text = text()
-  system.write(markdown.render(text))
-
 # This is an easy game.
 # I'm thinking if you want more harder approach, you can:
 # a) remove bullet counter (you don't know how many bullets left in a clip)
