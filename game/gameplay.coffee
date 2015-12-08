@@ -116,6 +116,8 @@ situation "shoot",
     system.clearContent()
     spend_bullet(character, system)
   after: (character, system, from) ->
+    if character.sandbox.shots == 1 # guaranteed first hit
+      return system.doLink("hit")
     roll = system.rnd.dice(1,20) # d20 roll
     hit_threshold = 15
     miss_threshold = 18

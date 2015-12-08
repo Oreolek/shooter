@@ -127,7 +127,7 @@ gulp.task('serve', ['build'], function () {
   gulp.watch(['./html/*.html'], ['html']);
   gulp.watch(['./less/*.less'], ['less']);
   gulp.watch(['./img/*.png', './img/*.jpeg', './img/*.jpg'], ['img']);
-  gulp.watch(['./game/*.coffee'], ['coffee']);
+  gulp.watch(['./game/*.coffee', './game/translations/*.coffee'], ['coffee']);
 
   gulp.watch(['./build/css/main.css'], lessListener);
   gulp.watch(
