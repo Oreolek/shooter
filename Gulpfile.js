@@ -14,7 +14,7 @@ var watchify    = require('watchify'),
     buffer      = require('vinyl-buffer'),
     zip         = require('gulp-zip'),
     _           = require('lodash'),
-    concat      = require('gulp-concat'),
+    concat      = require('gulp-concat');
 
 var reload = browserSync.reload;
 
