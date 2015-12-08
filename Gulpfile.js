@@ -1,8 +1,5 @@
 'use strict';
 
-/* Raconteur Gulpfile scaffold. */
-/* Includes code adapted from Gulp documentation, among other sources. */
-
 /* Imports */
 var watchify    = require('watchify'),
     browserify  = require('browserify'),
@@ -16,7 +13,8 @@ var watchify    = require('watchify'),
     uglify      = require('gulp-uglify'),
     buffer      = require('vinyl-buffer'),
     zip         = require('gulp-zip'),
-    _           = require('lodash');
+    _           = require('lodash'),
+    concat      = require('gulp-concat');
 
 var reload = browserSync.reload;
 
@@ -69,7 +67,7 @@ gulp.task('buildUndum', function () {
 /* Generate JavaScript with browser sync. */
 
 var customOpts = {
-  entries: ['./game/main.coffee'],
+  entries: ['./build/game/main.coffee'],
   debug: true,
   transform: [coffeify]
 };
@@ -78,16 +76,29 @@ var opts = _.assign({}, watchify.args, customOpts);
 var bundler = watchify(browserify(opts));
 bundler.external('undum-commonjs');
 
-gulp.task('coffee', ['buildUndum'], bundle); // `gulp coffee` will generate bundle
-bundler.on('update', bundle); // Re-bundle on dep updates
-bundler.on('log', gutil.log); // Output build logs to terminal
-
 function bundle () {
   return bundler.bundle()
     .on('error', gutil.log.bind(gutil, 'Browserify Error'))
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./build/game'));
 };
+
+gulp.task('copyTranslations', [], function() {
+  gulp.src('./game/translations/*.coffee')
+    .pipe(gulp.dest('./build/game/translations'));
+});
+
+gulp.task('concatCoffee', ['copyTranslations'], function() {
+  return gulp.src('./game/*.coffee')
+    .pipe(concat('./main.coffee'))
+    .pipe(gulp.dest('./build/game'));
+});
+
+// `gulp coffee` will generate bundle
+gulp.task('coffee', ['buildUndum', 'concatCoffee'], bundle);
+
+bundler.on('update', bundle); // Re-bundle on dep updates
+bundler.on('log', gutil.log); // Output build logs to terminal
 
 /* Make a development build */
 
