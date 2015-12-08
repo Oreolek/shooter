@@ -14,6 +14,11 @@ undum.language["en"] = undumloc
 $ = require("jquery")
 Array.prototype.oneOf = () ->
   oneOf.apply(null, this)
+md = require('markdown-it')
+markdown = new md({
+  typographer: true,
+  html: true
+})
 
 undum.game.id = "7a1aba32-f0fd-4e3b-ba5a-59e3fa9e6012"
 undum.game.version = "2.0"

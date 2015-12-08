@@ -14,7 +14,7 @@ var watchify    = require('watchify'),
     buffer      = require('vinyl-buffer'),
     zip         = require('gulp-zip'),
     _           = require('lodash'),
-    concat      = require('gulp-concat');
+    concat      = require('gulp-concat'),
 
 var reload = browserSync.reload;
 
@@ -66,13 +66,18 @@ gulp.task('buildUndum', function () {
 
 /* Generate JavaScript with browser sync. */
 
-var customOpts = {
-  entries: ['./build/game/main.coffee'],
+var sources = [
+  './game/begin.coffee',
+  './game/gameplay.coffee',
+  './game/story.coffee',
+  './game/end.coffee',
+]
+
+var opts = _.assign({}, watchify.args, {
+  entries: ["./build/game/main.coffee"],
   debug: true,
   transform: [coffeify]
-};
-
-var opts = _.assign({}, watchify.args, customOpts);
+});
 var bundler = watchify(browserify(opts));
 bundler.external('undum-commonjs');
 
@@ -89,12 +94,7 @@ gulp.task('copyTranslations', [], function() {
 });
 
 gulp.task('concatCoffee', ['copyTranslations'], function() {
-  return gulp.src([
-      './game/begin.coffee',
-      './game/gameplay.coffee',
-      './game/story.coffee',
-      './game/end.coffee',
-    ])
+  return gulp.src(sources)
     .pipe(concat('./main.coffee'))
     .pipe(gulp.dest('./build/game'));
 });
@@ -127,6 +127,7 @@ gulp.task('serve', ['build'], function () {
   gulp.watch(['./html/*.html'], ['html']);
   gulp.watch(['./less/*.less'], ['less']);
   gulp.watch(['./img/*.png', './img/*.jpeg', './img/*.jpg'], ['img']);
+  gulp.watch(['./game/*.coffee'], ['coffee']);
 
   gulp.watch(['./build/css/main.css'], lessListener);
   gulp.watch(

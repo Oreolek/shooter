@@ -3,6 +3,11 @@
 # a) remove bullet counter (you don't know how many bullets left in a clip)
 # b) remove canChoose restriction (you can shoot any time you want, but if you have no bullets - nothing comes out and you've lost a turn)
 
+# Scripted events. Called *after* every shot.
+scripted_events = (character, system) ->
+  if character.sandbox.shots == 1
+    writemd(system, "firstmove".l())
+
 kill_enemy = (character, system) ->
   if character.qualities.enemies == 0
     return
@@ -64,9 +69,13 @@ situation "hit",
   choices: ["#shoot"]
   before: (character, system, from) ->
     kill_enemy(character, system)
+  after: (character, system, from) ->
+    scripted_events(character, system, from)
   choices: ["#shoot"]
 
 situation "nicked",
+  after: (character, system, from) ->
+    scripted_events(character, system, from)
   content: (character, system, from) ->
     if character.sandbox.nicked == 1
       kill_enemy(character, system)
@@ -79,12 +88,16 @@ situation "nicked",
   choices: ["#shoot"]
 
 situation "miss",
+  after: (character, system, from) ->
+    scripted_events(character, system, from)
   content: (character, system, from) ->
     response = "player_missed".l().oneOf().randomly(system)
     return response()
   choices: ["#shoot"]
 
 situation "trick",
+  after: (character, system, from) ->
+    scripted_events(character, system, from)
   before: (character, system, from) ->
     kill_enemy(character, system)
     kill_enemy(character, system)
@@ -100,8 +113,8 @@ situation "shoot",
   canChoose: (character, system) ->
     return character.qualities.bullets > 0
   before: (character, system, from) ->
-    spend_bullet(character, system)
     system.clearContent()
+    spend_bullet(character, system)
   after: (character, system, from) ->
     roll = system.rnd.dice(1,20) # d20 roll
     hit_threshold = 15
