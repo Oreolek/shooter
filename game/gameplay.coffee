@@ -18,6 +18,9 @@ scripted_events = (character, system) ->
   if character.qualities.enemies == 3
     writemd(system, "thirdsteps".l())
   if character.qualities.enemies == 1
+    audio = document.getElementById("roar")
+    audio.currentTime=0
+    audio.play()
     writemd(system, "boss".l())
   if character.qualities.enemies == 0
     character.sandbox.steps = false
