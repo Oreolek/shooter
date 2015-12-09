@@ -7,6 +7,35 @@
 scripted_events = (character, system) ->
   if character.sandbox.shots == 1
     writemd(system, "firstmove".l())
+  # Finale buildup
+  if character.qualities.enemies < 9
+    character.sandbox.steps = true
+    character.sandbox.steps_volume = 0.1 + (9 - character.qualities.enemies) * 0.1
+  if character.qualities.enemies == 7
+    writemd(system, "firststeps".l())
+  if character.qualities.enemies == 5
+    writemd(system, "secondsteps".l())
+  if character.qualities.enemies == 3
+    writemd(system, "thirdsteps".l())
+  if character.qualities.enemies == 1
+    writemd(system, "boss".l())
+  if character.qualities.enemies == 0
+    character.sandbox.steps = false
+    system.doLink("finale")
+
+# Finale buildup - steps sound
+play_steps = (character) ->
+  console.log(character.sandbox.steps)
+  if character.sandbox.steps == false
+    return
+  coin = Math.random()
+  audio = 'step1'
+  if coin > 0.5
+    audio = 'step2'
+  audio = document.getElementById(audio)
+  audio.currentTime=0
+  audio.volume = character.sandbox.steps_volume
+  audio.play()
 
 kill_enemy = (character, system) ->
   if character.qualities.enemies == 0
@@ -15,8 +44,6 @@ kill_enemy = (character, system) ->
   character.sandbox.killed++
   if character.qualities.enemies >= 1
     system.setQuality("enemies", character.qualities.enemies - 1)
-  if character.qualities.enemies == 0
-    system.doLink("finale")
 
 spend_bullet = (character, system) ->
   bullets = character.sandbox.clips[character.sandbox.current_clip]
@@ -58,9 +85,6 @@ spend_clip = (character, system) ->
   if character.sandbox.killed > 15 and character.sandbox.seen_pacifist == 0
     system.doLink("pacifist")
     character.sandbox.seen_pacifist = 1
-  # Finale buildup
-  if character.sandbox.killed > 21
-    setTimeout( play_step(0.2), 1500)
 
 situation "hit",
   content: (character, system, from) ->
@@ -109,7 +133,9 @@ situation "trick",
 situation "shoot",
   tags: ["shoot"],
   optionText: (character, system, from) ->
-    return "shoot".l().oneOf().randomly(system)
+    if character.qualities.enemies > 1
+      return "shoot".l().oneOf().randomly(system)
+    return "shoot_boss".l()
   canChoose: (character, system) ->
     return character.qualities.bullets > 0
   before: (character, system, from) ->

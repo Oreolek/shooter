@@ -19,11 +19,13 @@ undum.game.init = (character, system) ->
   character.sandbox.killed = 0
   character.sandbox.seen_pacifist = 0
   character.sandbox.shot_pacifist = undefined
+  character.sandbox.steps = false
+  character.sandbox.steps_volume = 0
   $("#title").click(() ->
     $("#clip").fadeIn()
   )
-  # setInterval( () ->
-  #  console.log( 'Character object:', character )
-  #, 1000 );
+  setInterval( () ->
+    play_steps(character)
+  , 2400 );
 
 window.onload = undum.begin

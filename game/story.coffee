@@ -177,5 +177,13 @@ play_step = (volume) ->
 situation "finale",
   content: (character, system) ->
     if character.sandbox.shots < 36
-      return "finale_perfect".l()
-    return "finale".l()
+      """
+        #{"finale_perfect".l()}
+
+        #{"credits".l()}
+      """
+    """
+      #{"finale".l()}
+
+      #{"credits".l()}
+    """
