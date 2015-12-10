@@ -21,7 +21,7 @@ markdown = new md({
 })
 
 undum.game.id = "7a1aba32-f0fd-4e3b-ba5a-59e3fa9e6012"
-undum.game.version = "2.0"
+undum.game.version = "3.0"
 
 a = require('raconteur/lib/elements.js').a
 way_to = (content, ref) -> a(content).class('way').ref(ref)
