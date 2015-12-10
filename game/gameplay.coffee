@@ -20,6 +20,7 @@ scripted_events = (character, system) ->
   if character.qualities.enemies == 1
     audio = document.getElementById("roar")
     audio.currentTime=0
+    audio.volume = 1 * character.sandbox.volume
     audio.play()
     writemd(system, "boss".l())
   if character.qualities.enemies == 0
@@ -37,7 +38,7 @@ play_steps = (character) ->
     audio = 'step2'
   audio = document.getElementById(audio)
   audio.currentTime=0
-  audio.volume = character.sandbox.steps_volume
+  audio.volume = character.sandbox.steps_volume * character.sandbox.volume
   audio.play()
 
 kill_enemy = (character, system) ->
@@ -58,6 +59,7 @@ spend_bullet = (character, system) ->
       audio = 'shot2'
     audio = document.getElementById(audio)
     audio.currentTime=0
+    audio.volume = 1 * character.sandbox.volume
     audio.play()
     character.sandbox.clips[character.sandbox.current_clip]--
     bullets--
@@ -72,6 +74,7 @@ spend_clip = (character, system) ->
     return
   audio = document.getElementById("reload")
   audio.currentTime=0
+  audio.volume = 1 * character.sandbox.volume
   audio.play()
   if bullets == 0
     character.sandbox.clips.splice(character.sandbox.current_clip, 1)
@@ -86,7 +89,7 @@ spend_clip = (character, system) ->
   system.setQuality("bullets", bullets)
   $("#clip img").attr("src", "img/clip"+bullets+".png")
   # Pacifist event
-  if character.sandbox.killed > 15 and character.sandbox.seen_pacifist == 0
+  if character.sandbox.killed > 12 and character.sandbox.seen_pacifist == 0
     system.doLink("pacifist")
     character.sandbox.seen_pacifist = 1
 
@@ -201,7 +204,7 @@ situation "search",
   tags: ["shoot"],
   optionText: "search".l(),
   canView: (character, system) ->
-    return character.sandbox.seen_search || character.qualities.clips < 5
+    return character.sandbox.seen_search || character.qualities.clips <= character.sandbox.search_clip_threshold
   canChoose: (character, system) ->
     return character.qualities.clips < 5
   before: (character, system) ->

@@ -7,9 +7,15 @@ qualities
 
 undum.game.init = (character, system) ->
   system.setQuality("bullets", 6)
-  system.setQuality("clips", 6)
-  system.setQuality("enemies", 35)
-  character.sandbox.clips = [6,6,6,6,6,6]
+  # Number of enemies. More enemies means the game will be longer.
+  system.setQuality("enemies", 25)
+  system.setQuality("clips", Math.floor(character.qualities.enemies / 6))
+  character.sandbox.search_clip_threshold = character.qualities.clips - 2
+  # Sound volume multiplicator. 0 means the game is muted.
+  character.sandbox.volume = 1
+  character.sandbox.clips = []
+  for i in [1 .. character.qualities.clips]
+    character.sandbox.clips.push(6)
   character.sandbox.current_clip = 0
   character.sandbox.nicked = 0
   character.sandbox.seen_reload = 0
