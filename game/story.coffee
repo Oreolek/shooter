@@ -175,6 +175,11 @@ play_step = (volume) ->
   audio.play()
 
 situation "finale",
+  before: (character, system) ->
+     _paq.push(['setCustomDimension', 1, character.sandbox.shots])
+     _paq.push(['setCustomDimension', 2, character.sandbox.shot_pacifist])
+     _paq.push(['setCustomDimension', 3, character.sandbox.reloads])
+  choices: ["#finale"],
   content: (character, system) ->
     if character.sandbox.shots < 36
       """
@@ -187,3 +192,12 @@ situation "finale",
 
       #{"credits".l()}
     """
+
+situation "stats",
+  tags: "finale",
+  optionText: "Ваш счёт",
+  content: """
+    #{"stats".l()}
+
+  """
+  #<img src="index.php?module=API&method=ImageGraph.get&idSite=2&apiModule=UserSettings&apiAction=getResolution&token_auth=anonymous&graphType=verticalBar&period=month&date=today&width=500&height=250">

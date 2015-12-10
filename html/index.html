@@ -13,7 +13,7 @@
           <div class="label">
             <h1>Пули говорят быстрее</h1>
             <h3>Научно-фантастический онлайн кибертекстовый шутер от первого лица</h3>
-            <p>от <b><a href="https://oreolek.ru/">Oreolek'а</a></b></p>
+            <p>от <b><a href="https://oreolek.ru/" target="_blank">Oreolek'а</a></b></p>
             <noscript>
               <p class="noscript_message">Эта игра требует Javascript.</p>
             </noscript>
@@ -33,7 +33,7 @@
         <div id="legal">
           <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" class="footright"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
           <p>Приблизительное время прохождения игры: пять минут.</p>
-          <p>Написано при помощи <a href="http://undum.com">Undum</a> и <a href="http://sequitur.github.io/raconteur/">Raconteur</a>.</p>
+          <p>Написано при помощи <a href="http://undum.com" target="_blank">Undum</a> и <a href="http://sequitur.github.io/raconteur/" target="_blank">Raconteur</a>.</p>
           <p class="muted">Бета-тестеры: headless zombie, Kie Kazuki</p>
         </div>
       </div>
@@ -74,5 +74,20 @@
     <audio id="roar" preload="auto"><source src="audio/roar.mp3" type='audio/mpeg; codecs="mp3"'></audio>
     <script type="text/javascript" src="game/undum.js"></script>
     <script type="text/javascript" src="game/bundle.js"></script>
+    <!-- Piwik tracking. Google or Yandex DON'T see these analytics. Also I support Do Not Track feature. -->
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//webstats.oreolek.ru/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', 2]);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <noscript><p><img src="//webstats.oreolek.ru/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+    <!-- End Piwik Code -->
   </body>
 </html>

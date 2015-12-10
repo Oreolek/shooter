@@ -160,13 +160,13 @@ gulp.task('less-dist', function () {
 
 var distBundler = browserify({
   debug: false,
-  entries: ['./game/main.coffee'],
+  entries: ['./build/game/main.coffee'],
   transform: ['coffeeify']
 });
 
 distBundler.external('undum-commonjs');
 
-gulp.task('coffee-dist', ['undum-dist'], function () {
+gulp.task('coffee-dist', ['undum-dist', 'concatCoffee'], function () {
   return distBundler.bundle()
         .pipe(source('bundle.js'))
         .pipe(buffer())

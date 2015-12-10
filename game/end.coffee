@@ -16,6 +16,7 @@ undum.game.init = (character, system) ->
   character.sandbox.seen_search = 0
   character.sandbox.trick_shot = 0
   character.sandbox.shots = 0
+  character.sandbox.reloads = 0
   character.sandbox.killed = 0
   character.sandbox.seen_pacifist = 0
   character.sandbox.shot_pacifist = undefined

@@ -65,6 +65,7 @@ spend_bullet = (character, system) ->
     $("#clip img").attr("src", "img/clip"+bullets+".png")
 
 spend_clip = (character, system) ->
+  character.sandbox.reloads++
   bullets = character.sandbox.clips[character.sandbox.current_clip]
   clips = character.sandbox.clips.length
   if clips < 2
