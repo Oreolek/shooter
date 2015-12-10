@@ -29,7 +29,6 @@ scripted_events = (character, system) ->
 
 # Finale buildup - steps sound
 play_steps = (character) ->
-  console.log(character.sandbox.steps)
   if character.sandbox.steps == false
     return
   coin = Math.random()
