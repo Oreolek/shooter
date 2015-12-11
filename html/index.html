@@ -5,6 +5,7 @@
     <title>Пули говорят быстрее</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
   </head>
   <body>
     <div id="page">
@@ -20,8 +21,15 @@
             <p class="click_message">нажмите, чтобы начать</p>
           </div>
         </div>
-        <div id="clip">
-          <p><img src="img/clip6.png"></p>
+        <div class="controls">
+          <div id="clip">
+            <p><img src="img/clip6.png"></p>
+          </div>
+          <!-- Volume slider -->
+          <section class="volume">
+            <div id="slider"></div>
+            <span class="voldisplay"></span>
+          </section>
         </div>
 
         <div id="content_wrapper">
@@ -77,9 +85,10 @@
     <!-- Piwik tracking. Google or Yandex DON'T see these analytics. Also I support Do Not Track feature. -->
     <script type="text/javascript">
       var _paq = _paq || [];
-      _paq.push(["setDomains", ["*.oreolek.ru/my_games","*.oreolek.ru/temp","*.itch.io"]]);
+      _paq.push(["setDomains", ["*.oreolek.ru","*.itch.io"]]);
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
+      _paq.push(['enableHeartBeatTimer']);
       (function() {
         var u="//oreolek.ru/webstats/";
         _paq.push(['setTrackerUrl', u+'piwik.php']);

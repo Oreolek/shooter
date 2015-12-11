@@ -11,8 +11,6 @@ undum.game.init = (character, system) ->
   system.setQuality("enemies", 25)
   system.setQuality("clips", Math.floor(character.qualities.enemies / 6))
   character.sandbox.search_clip_threshold = character.qualities.clips - 2
-  # Sound volume multiplicator. 0 means the game is muted.
-  character.sandbox.volume = 1
   character.sandbox.clips = []
   for i in [1 .. character.qualities.clips]
     character.sandbox.clips.push(6)
@@ -30,6 +28,25 @@ undum.game.init = (character, system) ->
   character.sandbox.steps_volume = 0
   $("#title").click(() ->
     $("#clip").fadeIn()
+    $(".volume").fadeIn()
+    slider = $('#slider')
+
+    slider.slider({
+      range: "min",
+      min: 1,
+      value: 100,
+      slide: (event, ui) ->
+        value = slider.slider('value')
+        volume = $('.voldisplay')
+        if value <= 5
+          volume.css('background-position', '0 0')
+        else if value <= 25
+          volume.css('background-position', '0 -25px')
+        else if value <= 75
+          volume.css('background-position', '0 -50px')
+        else
+          volume.css('background-position', '0 -75px')
+    })
   )
   setInterval( () ->
     play_steps(character)

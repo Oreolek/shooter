@@ -20,7 +20,7 @@ scripted_events = (character, system) ->
   if character.qualities.enemies == 1
     audio = document.getElementById("roar")
     audio.currentTime=0
-    audio.volume = 1 * character.sandbox.volume
+    audio.volume = 1 * get_volume()
     audio.play()
     writemd(system, "boss".l())
   if character.qualities.enemies == 0
@@ -37,7 +37,7 @@ play_steps = (character) ->
     audio = 'step2'
   audio = document.getElementById(audio)
   audio.currentTime=0
-  audio.volume = character.sandbox.steps_volume * character.sandbox.volume
+  audio.volume = character.sandbox.steps_volume * get_volume()
   audio.play()
 
 kill_enemy = (character, system) ->
@@ -58,7 +58,7 @@ spend_bullet = (character, system) ->
       audio = 'shot2'
     audio = document.getElementById(audio)
     audio.currentTime=0
-    audio.volume = 1 * character.sandbox.volume
+    audio.volume = 1 * get_volume()
     audio.play()
     character.sandbox.clips[character.sandbox.current_clip]--
     bullets--
@@ -73,7 +73,7 @@ spend_clip = (character, system) ->
     return
   audio = document.getElementById("reload")
   audio.currentTime=0
-  audio.volume = 1 * character.sandbox.volume
+  audio.volume = 1 * get_volume()
   audio.play()
   if bullets == 0
     character.sandbox.clips.splice(character.sandbox.current_clip, 1)

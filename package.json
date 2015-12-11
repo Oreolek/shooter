@@ -3,6 +3,7 @@
     "undum": "git://github.com/oreolek/undum-commonjs#commonjs",
     "raconteur": "git://github.com/sequitur/raconteur.git#stable",
     "jquery": "^2.1.3",
+    "jquery-ui": "^1.10.5",
     "markdown-it": "^4.1.0",
     "color": "^0.10.1"
   },

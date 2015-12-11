@@ -5,6 +5,17 @@
 @gutter-width: 20;
 @total-width: 100%;
 
+body {
+  background: @background;
+  color: @color;
+  font-family: @font-body;
+  font-size: 18px;
+  line-height: 1.6em;
+  background-attachment: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 #page {
   .row();
 }
@@ -37,17 +48,6 @@
     .column(12);
     margin-bottom: 1em;
   }
-}
-
-body {
-  background: @background;
-  color: @color;
-  font-family: @font-body;
-  font-size: 18px;
-  line-height: 1.6em;
-  background-attachment: fixed;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 /* The title block */
@@ -276,13 +276,21 @@ img.left {
   float: right;
 }
 
-#clip {
-  text-align: center;
-  display: none;
-  img {
-    max-height: 50px;
-  }
-}
 h3 {
   text-align: center;
+}
+.controls {
+  .row();
+  #clip {
+    .push(4);
+    .column(2);
+    text-align: center;
+    display: none;
+    img {
+      max-height: 50px;
+    }
+  }
+  .volume {
+    .column(2);
+  }
 }
