@@ -14,6 +14,9 @@
 @import "bootstrap/scss/utilities-spacing";
 @import "bootstrap/scss/utilities-responsive";
 
+@import "mixins";
+@import "slider";
+
 body {
   overflow-y: scroll;
   overflow-x: hidden;
@@ -40,9 +43,11 @@ body {
 */
 // The title block
 .title {
-  @include make-col();
-  @include make-col-span(10);
-  @include make-col-offset(1);
+  @include col(10,12);
+  @media (min-width: breakpoint-min(sm)) {
+    @include make-col-offset(1);
+  }
+  cursor: pointer; // Until we click to start.
   .label {
     overflow: hidden;
     margin: auto;
@@ -86,16 +91,15 @@ body {
     color: #943;
   }
 }
-#title {
-  cursor: pointer; // Until we click to start.
-  padding: 1.7em;
-}
 #content_wrapper {
   background: $text_background;
+  border-radius: 5px;
 }
 #content {
-  @include make-col();
-  @include make-col-span(12);
+  @include col(10, 12);
+  @media (min-width: breakpoint-min(sm)) {
+    @include make-col-offset(1);
+  }
   padding: 1em;
   ul {
     margin: 0;
@@ -137,9 +141,10 @@ body {
   }
 }
 #legal {
-  @include make-col();
-  @include make-col-span(10);
-  @include make-col-push(1);
+  @include col(10,12);
+  @media (min-width: breakpoint-min(sm)) {
+    @include make-col-offset(1);
+  }
   margin-top: 1em;
   color: #654;
   font-size: smaller;
@@ -171,15 +176,6 @@ body {
   display: none;
 }
 
-@mixin halfcolumn() {
-  @include make-col();
-  @media (min-width: breakpoint-min(sm)) {
-    @include make-col-span(6);
-  }
-  @media (max-width: breakpoint-max(xs)) {
-    @include make-col-span(12);
-  }
-}
 .controls {
   display: none;
   @include make-col();
@@ -196,11 +192,6 @@ body {
   }
   .volume {
     @include halfcolumn();
-    text-align: center;
-    #slider {
-      margin: 0 auto;
-      max-width: 8em;
-    }
   }
 }
 .way {

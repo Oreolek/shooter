@@ -51,4 +51,4 @@ is_visited = (situation) ->
 
 # Volume from 0 to 1
 get_volume = () ->
-  return $('#slider').slider('value') / 100
+  return ($('#slider').slider('value') - 1) / 100

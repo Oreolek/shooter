@@ -153,8 +153,10 @@ situation "shoot",
     roll = system.rnd.dice(1,20) # d20 roll
     hit_threshold = 15
     miss_threshold = 18
+    if character.qualities.enemies == 1
+      miss_threshold = 15 # you can't nick The Boss
     switch
-      when roll < hit_threshold then system.doLink("hit")
+      when roll <= hit_threshold then system.doLink("hit")
       when roll > miss_threshold then system.doLink("miss")
       else system.doLink("nicked")
 

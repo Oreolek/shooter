@@ -1,0 +1,18 @@
+@mixin halfcolumn() {
+  @include make-col();
+  @media (min-width: breakpoint-min(sm)) {
+    @include make-col-span(6);
+  }
+  @media (max-width: breakpoint-max(xs)) {
+    @include make-col-span(12);
+  }
+}
+@mixin col($sm-width, $xs-width) {
+  @include make-col;
+  @media (min-width: breakpoint-min(sm)) {
+    @include make-col-span($sm-width);
+  }
+  @media (max-width: breakpoint-max(xs)) {
+    @include make-col-span($xs-width);
+  }
+}
