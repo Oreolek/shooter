@@ -8,7 +8,7 @@ var watchify    = require('watchify'),
     source      = require('vinyl-source-stream'),
     gutil       = require('gulp-util'),
     coffeify    = require('coffeeify'),
-    less        = require('gulp-less'),
+    sass        = require('gulp-sass'),
     minifyCSS   = require('gulp-minify-css'),
     uglify      = require('gulp-uglify'),
     buffer      = require('vinyl-buffer'),
@@ -49,10 +49,10 @@ gulp.task('audio', audio('./build/audio'));
 
 /* Less */
 
-gulp.task('less', function () {
-  gulp.src('less/main.less')
-      .pipe(less())
-      .pipe(gulp.dest('./build/css'));
+gulp.task('sass', function () {
+  gulp.src('sass/main.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./build/css'));
 });
 
 /* Bundle libraries */
@@ -107,7 +107,7 @@ bundler.on('log', gutil.log); // Output build logs to terminal
 
 /* Make a development build */
 
-gulp.task('build', ['html', 'img', 'less', 'coffee', 'audio'], function () {
+gulp.task('build', ['html', 'img', 'sass', 'coffee', 'audio'], function () {
 
 });
 
@@ -120,16 +120,16 @@ gulp.task('serve', ['build'], function () {
     }
   });
 
-  var lessListener = function () {
+  var sassListener = function () {
     reload('./build/css/main.css');
   }
 
   gulp.watch(['./html/*.html'], ['html']);
-  gulp.watch(['./less/*.less'], ['less']);
+  gulp.watch(['./sass/*.scss'], ['sass']);
   gulp.watch(['./img/*.png', './img/*.jpeg', './img/*.jpg'], ['img']);
   gulp.watch(['./game/*.coffee', './game/translations/*.coffee'], ['coffee']);
 
-  gulp.watch(['./build/css/main.css'], lessListener);
+  gulp.watch(['./build/css/main.css'], sassListener);
   gulp.watch(
     ['./build/game/bundle.js', './build/img/*', './build/index.html'],
     browserSync.reload);
@@ -151,10 +151,9 @@ gulp.task('html-dist', html('./dist'));
 gulp.task('img-dist', img('./dist/img'));
 gulp.task('audio-dist', audio('./dist/audio'));
 
-gulp.task('less-dist', function () {
-  return gulp.src('./less/main.less')
-        .pipe(less())
-        .pipe(minifyCSS())
+gulp.task('sass-dist', function () {
+  return gulp.src('./sass/main.scss')
+        .pipe(sass({outputStyle: 'compressed'}))
         .pipe(gulp.dest('./dist/css'));
 });
 
@@ -175,7 +174,7 @@ gulp.task('coffee-dist', ['undum-dist', 'concatCoffee'], function () {
         .pipe(gulp.dest('./dist/game'));
 });
 
-gulp.task('dist', ['html-dist', 'img-dist', 'less-dist', 'coffee-dist', 'audio-dist'],
+gulp.task('dist', ['html-dist', 'img-dist', 'sass-dist', 'coffee-dist', 'audio-dist'],
   function () {
     return;
 });
