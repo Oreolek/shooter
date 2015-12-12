@@ -27,8 +27,7 @@ undum.game.init = (character, system) ->
   character.sandbox.steps = false
   character.sandbox.steps_volume = 0
   $("#title").click(() ->
-    $("#clip").fadeIn()
-    $(".volume").fadeIn()
+    $(".controls").fadeIn()
     slider = $('#slider')
 
     slider.slider({
