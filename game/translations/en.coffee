@@ -74,21 +74,18 @@ module.exports.language =
     'Aha! Got one. I hope it has some ammo.',
     "Eh, here's one. Looks heavy -- I hope it has some ammo.",
   ]
-  player_missed: [
-    "The bullet flies over android's left arm.",
-    "Android dodges the shot. It's alright, next time I won't miss.",
-    "Damn! Missed.",
-  ]
   trick_shot: "Try a trick shot"
   player_trickshot: [
-    "
+    """
       I run against a wall and jump, shooting while flying.
-      The bullet flies through android's head into another one, knocking them both out.
-    ",
-    "
-      I notice a weak spot in the ceiling.
-      A single shot there - and a section collapses, taking two enemies out.
-    ",
+
+      The bullet flies through robot's head into another one, knocking them both out.
+    """,
+    """
+      I notice a stir in the portal.
+      The bullet pierces the robot and flies in the portal.
+      A robot body falls through the green door, turning into water during the fall.
+    """,
   ]
   start: (link) -> """
     -- Tony, do you really need the pistol now?
@@ -160,46 +157,49 @@ module.exports.language =
   answer1_option: "Honey, I'm just worried about you."
   finale:
     """
-      Ко мне подходит Кристина.
-      Она обнимает меня и целует.
+      Christine comes to me.
+      She hugs me and kisses.
 
-      -- Мой герой.
+      „My hero.“
 
-      -- Тебе помочь закрыть портал?
+      “Do you need help closing the portal?”
 
-      -- Я сама виновата.
-      Не вспомнила про такую простую защиту.
+      “I'm to blame for all of this.
+      I didn't reckon this simple safeguard.”
 
-      -- Ну, ты могла бы в другой раз не унижать так много волшебников сразу.
-      Возможно, они бы не прислали своих големов или как это называется.
+      “Well, next time you could not to humiliate so many wizards at once.
+      Perhaps they wouldn't send their golems or how that's called.”
 
-      -- Конструкты. А ты мог бы быть лапушкой и держать свои патроны вместе с
-      оружием где-нибудь в оружейном сейфе.
+      „Constructs, my dear.
+      And you could be a sweetheart and keep your ammo together with weapons
+      somewhere in a gun safe.“
 
-      -- А если...
+      „But what if...“
 
-      -- А ты поставь второй секретный сейф.
+      „Oh, you just put a second secret safe.“
 
-      -- Сделаю. Так что, мы ещё успеваем закончить романтический вечер?
+      “Will do.
+      So, do we still have time to end our romantic evening?”
 
-      -- Ты обещаешь быть жестоким и безоружным?
+      “Do you promise to be violent and unarmed?”
 
-      -- Я буду чист и многозаряден.
+      “I will be clean and multiсharged.”
 
-      Я поцеловал Кристину и оставил её рядом с зелёным порталом.
-      Думаю, мне не надо беспокоиться за её безопасность.
-      Она может остановить любые пули и заклинания.
+      I kissed Christine and left her near the green portal.
+      I think I don't need to worry about her safety.
+      She can stop any bullets and spells.
 
-      И всё-таки я оставлю тайник на чердаке с ракетами на всякий случай.
+      But still I will leave a rocket stash on the attic just in case.
     """
   finale_perfect:
     """
-      25 выстрелов.
-      Вот всё, что потребовалось.
-      Была ли это невероятная удача, или вмешательство высшей силы, но ещё осталось много времени.
+      25 shots.
 
-      Моя работа сделана.
-      А теперь наш вечер вдвоём будет таким, каким он должен быть.
+      It's all that took.
+      Was it an extraordinary luck or higher being's meddling but we still have a lot of time.
+
+      My job is done.
+      And now our evening for two will be just as it should have been.
     """
   credits:
     """
@@ -220,47 +220,48 @@ module.exports.language =
     """
   clips_not_found: [
     """
-      -- Не могу найти!
+      “Can't find it!”
     """,
     """
-      -- Ничего нет!
+      “Nothing here!”
 
-      -- Ну хотя бы один!
+      “Come on, at least one!”
 
-      -- Я держу барьер! Экономь патроны!
+      “I'm watching the shield! Conserve your shots!”
     """,
     """
-        -- Пусто!
+      “It's empty!”
 
-        -- Ты посмотрела...
+      “Did you check...”
 
-        -- Да я везде уже посмотрела, нет больше твоих картриджей!
+      “Yes, I did check everything, there's no damn clip left!”
 
-        -- Ладно, дай тогда вспомню, где ещё были заначки.
+      “Okay, let me remember any more stashes.”
     """,
-    "-- Пусто!",
-    "-- Ничего!",
-    "-- Вспоминай лучше! Тут чисто!",
+    "“Empty!”",
+    "“Nothing!”",
+    "“It's empty! Jog your memory better!”",
     """
-        -- Ты не можешь хранить все патроны в одном месте?!
-        Их не найти!
+      “Can't you keep every clip in one place?!
+      I can't find them!”
 
-        -- Это система!
+      “It's a system!”
 
-        -- Это мания!
+      “It's a mania!”
     """,
   ]
   clips_found:[
-    "Ага! Есть один. Надеюсь, в нём есть патроны.",
-    "А, вот какой-то. На вес тяжёлый -- надеюсь, в нём есть патроны."
+    "Aha! Here's one. I hope it's not empty.",
+    "Eh, here's something. It's heavy -- there must be shells inside."
   ]
   player_missed:[
-    "Пуля пролетает над левым плечом робота.",
-    "Робот вовремя уворачивается от выстрела. Ничего, в следующий раз я не промахнусь.",
-    "Чёрт! Промазал.",
-    "Мимо! Ну что за невезение.",
-    "На заметку: надо чаще упражняться в стрельбе. Часто промахиваюсь.",
-    "Чёрт! Почему я промазал именно сейчас?!",
+    "The bullet flies over robot's left shoulder.",
+    "Robot dodges the shot. Okay, next time I won't miss."
+    "Damn! Missed.",
+    "Drat it! Missed.",
+    "Missed! What a bad luck.",
+    "Note to self: need more shooting practice. I miss a lot.",
+    "Damn! Why did I miss now?!",
   ]
   player_trickshot: [
     """
@@ -273,45 +274,44 @@ module.exports.language =
     """
   ]
   pacifist: """
-    -- Не стреляйте! Я пацифист!
+    -- Don't shoot! I'm a pacifist!
 
-    Один из роботов поднимает руки вверх.
-    На его лице написана мольба.
+    One of the robots raises hands.
+    His face is a mask of pleading.
   """
   shoot_pacifist: (link) -> """
-    Я простреливаю его блестящую металлическую #{link}.
-    Из портала выходит другой робот, который ударом ноги валит на землю товарища.
-    Затем он наступает на его голову.
-    Странный робот стекает в лужу, но его место уже занял другой, более нормальный.
+    I shoot through his shiny metal #{link}.
+    Another robot comes out the portal and knock him on the floor with a leg kick.
+    Then it stomps on his head.
+    The weird android is turning into a puddle but his place is already taken by other, a normal one.
   """
   spare_pacifist: """
-    Я опускаю пистолет.
+    I put down the pistol.
 
-    -- Спасибо! -- кричит странный робот. -- Я обязательно...
+    “Thank you!” -- cries the weird robot. -- “I'll surely...”
 
-    Тут его толкают сзади, и он падает на землю лицом вниз.
+    He gets knocked from behind and falls on the floor, face down.
 
-    -- Директива А028. Девиантное поведение. Уничтожить.
+    ”Directive A028. Deviant behaviour. Destroy.”
 
-    Робот, следующий за ним, наносит пацифисту мощный удар в затылок.
-    После этого он перешагивает через свежую лужицу и смотрит на меня злым взглядом.
-    Похоже, битва продолжается.
+    The following robot delivers a hard blow to pacifist's nape.
+    He walks over the fresh puddle and looks at me with his evil eyes.
+    I guess the battle continues.
   """
-  firststeps: "Это шаги? Похоже, что-то приближается по ту сторону портала."
-  secondsteps: "Шаги становятся громче. Оно большое."
-  thirdsteps: "Уже близко. Совсем близко."
+  firststeps: "Are those steps? It looks like something is approaching on the other side of the portal."
+  secondsteps: "The steps are getting louder. It's big."
+  thirdsteps: "It's close. Very close."
   boss: """
-    Из портала вылезает гигантская блестящая Рука.
-    Она цепляется за край портала и начинает его растягивать.
+    A giant shiny Hand crawls out of the portal.
+    It clings to the edge and starts to stretch it.
 
-    Кристина кричит:
-    -- Оно слишком большое! Я не смогу удержать!
+    Christine shouts: “It's too big! I can't hold it!”
 
-    Из растянутого портала показывается ведро.
-    Это голова робота-титана, который мог бы таранить города.
-    Я точно не хочу впускать его на задний двор своего дома.
+    A bucket comes out the portal.
+    It's a head of a titan robot, which could attack the cities with it.
+    I definitely don't want to invite THIS to my backyard.
     """
-  shoot_boss: "Успокоить титана свинцом"
+  shoot_boss: "Calm down the titan with lead"
   trick_shot_discover: (character) ->
     """
       I count the clips.
@@ -321,34 +321,9 @@ module.exports.language =
       I gotta conserve the ammo.
       I can try trick shots but these are big risk.
     """
-  pacifist: """
-    -- Don't shoot! I'm a pacifist!
-
-    One of the androids raises hands.
-    His face is a mask of pleading.
-  """
-  shoot_pacifist: (link) -> """
-    I shoot through his shiny metal #{link}.
-    His comrades push him forward and knock him on the floor.
-    The next in the corridor steps on his head and stomps on his torso.
-    The weird android lies motionless, but his place is already taken by other, a normal one.
-  """
   head: "head"
   arm: "arm"
   leg: "leg"
-  spare_pacifist: """
-    I put down the pistol.
-
-    -- Thank you! -- cries the weird android. -- I'll surely...
-
-    He gets knocked from behind and falls on the floor, face down.
-
-    -- Directive A028. Deviant behaviour. Destroy.
-
-    The following android delivers a hard blow to pacifist's nape.
-    He walks over the motionless body and looks at me with his evil eyes.
-    I guess the battle continues.
-  """
   answer1: """
     „Honey, I'm just worried about you.”
 

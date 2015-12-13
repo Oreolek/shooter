@@ -141,6 +141,8 @@ situation "finale",
 
 situation "stats",
   tags: "finale",
+  before: (character, system, from) ->
+    system.clearContent()
   optionText: "stats_option".l()
   content: """
     #{"stats".l()}
