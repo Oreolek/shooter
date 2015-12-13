@@ -27,12 +27,12 @@ situation 'branch1-b',
   content: "branch1_b".l()
 
 situation 'dlg-intro-finale1',
-  optionText: "dlg_finale1_option".l()
+  optionText: "dlg_finale1_option".l(),
   choices: ['#stage3'],
   tags: "answer2",
   canView: () -> !is_visited(this.name),
-  content: (character) -> "dlg_finale1".l(cycle(this, character))
-  cycle_gallery: () -> "dlg_finale1_cycle".l()
+  content: (character) -> "dlg_finale1".l()(cycle(this, character)),
+  cycle_gallery: () -> "dlg_finale1_cycle".l(),
   writers:
     cyclewriter: (character) -> cycle(this, character)
 
