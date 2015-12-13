@@ -2,41 +2,53 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-
-    <title>Thirty five shots</title>
-
+    <title>Bullets talk faster</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
   </head>
   <body>
-    <div id="page">
-
-      <div id="mid_panel">
-        <div id="title">
+    <div id="page" class="container">
+      <div class="row">
+        <div id="title" class="title">
           <div class="label">
-
-            <h1>Thirty five shots</h1>
-            <h3>An online sci-fi first person cybertext shooter</h3>
+            <h1>Bullets talk faster</h1>
+            <h3>An online fantasy first person cybertext shooter</h3>
             <noscript>
               <p class="noscript_message">This game requires Javascript.</p>
             </noscript>
             <p class="click_message">click to play</p>
           </div>
         </div>
-        <div id="clip">
-          <p><img src="img/clip6.png"></p>
+        <div class="row">
+          <div class="controls">
+            <div id="clip">
+              <p><img src="img/clip6.png"></p>
+            </div>
+            <!-- Volume slider -->
+            <section class="volume">
+              <div id="slider"></div>
+              <span class="voldisplay"></span>
+            </section>
+          </div>
         </div>
-
-        <div id="content_wrapper">
+        <div id="content_wrapper" class="row">
           <div id="content">
           </div>
           <a name="end_of_content"></a>
         </div>
 
-        <div id="legal">
-          <p>Approximate play time: five minites.</p>
-          <p>Made using <a href="http://undum.com">Undum</a> and <a href="http://sequitur.github.io/raconteur/">Raconteur</a>.</p>
-          <p>Betatesting credit: headless zombie</p>
+        <div class="row">
+          <div id="legal">
+            <div id="footleft">
+              <p>Approximate play time: five minites.</p>
+              <p>Made using <a href="http://undum.com">Undum</a> and <a href="http://sequitur.github.io/raconteur/">Raconteur</a>.</p>
+              <p>Betatesting credit: headless zombie</p>
+            </div>
+            <div id="footright">
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+            </div>
+          </div>
         </div>
       </div>
     </div> <!-- End of div.page -->
@@ -52,18 +64,6 @@
         <div class="qualities_in_group">
         </div>
       </div>
-
-      <div id="progress_bar" class="progress_bar">
-        <span class="name" data-attr="name"></span>
-        <span class="value" data-attr="value"></span>
-        <div class="progress_bar_track">
-          <div class="progress_bar_color" data-attr="width">
-          </div>
-        </div>
-        <span class="left_label" data-attr="left_label"></span>
-        <span class="right_label" data-attr="right_label"></span>
-      </div>
-
       <hr id="turn_separator">
     </div>
 
@@ -71,7 +71,27 @@
     <audio id="shot1" preload="auto"><source src="audio/fire.mp3" type='audio/mpeg; codecs="mp3"'></audio>
     <audio id="shot2" preload="auto"><source src="audio/casing.mp3" type='audio/mpeg; codecs="mp3"'></audio>
     <audio id="reload" preload="auto"><source src="audio/reload.mp3" type='audio/mpeg; codecs="mp3"'></audio>
+    <audio id="step1" preload="auto"><source src="audio/step1.mp3" type='audio/mpeg; codecs="mp3"'></audio>
+    <audio id="step2" preload="auto"><source src="audio/step2.mp3" type='audio/mpeg; codecs="mp3"'></audio>
+    <audio id="roar" preload="auto"><source src="audio/roar.mp3" type='audio/mpeg; codecs="mp3"'></audio>
     <script type="text/javascript" src="game/undum.js"></script>
     <script type="text/javascript" src="game/bundle.js"></script>
+    <!-- Piwik tracking. Google or Yandex DON'T see these analytics. Also I support Do Not Track feature. -->
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      _paq.push(["setDomains", ["*.oreolek.ru","*.itch.io"]]);
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      _paq.push(['enableHeartBeatTimer']);
+      (function() {
+        var u="//oreolek.ru/webstats/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', 2]);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <noscript><p><img src="//webstats.oreolek.ru/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+    <!-- End Piwik Code -->
   </body>
 </html>

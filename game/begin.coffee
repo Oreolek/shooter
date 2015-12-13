@@ -29,19 +29,30 @@ a = require('raconteur/lib/elements.js').a
 way_to = (content, ref) -> a(content).class('way').ref(ref)
 textlink = (content, ref) -> a(content).once().writer(ref)
 textcycle = (content, ref) -> a(content).replacer(ref).class("cycle").id(ref).toString()
+# Cycling link. It's implied there can be only one per situation.
+# Also it saves the current index in the window object, which is not okay for longer games because no saving.
+# You are welcome to improve this code.
+cycle = (obj) ->
+  responses = obj.cycle_gallery()
+  window.cycle_index ?= []
+  window.cycle_index[obj.name] ?= 0
+  if window.cycle_index[obj.name] == responses.length
+    window.cycle_index[obj.name] = 0
+  response = responses[window.cycle_index[obj.name]]
+  window.cycle_index[obj.name]++
+  return textcycle(response, 'cyclewriter')
 writemd = (system, text) ->
   if typeof text is Function
     text = text()
   system.write(markdown.render(text))
 
 situation "start",
+  cycle_gallery: () -> "christine".l()
   content: () ->
-    return "start".l()(this.writers.smell)
+    return "start".l()(cycle(this))
   choices: ["#start"],
   writers:
-    smell: textcycle("пахнет сладким мёдом", "look")
-    look: textcycle("смотрит вдаль, о чём-то задумавшись", "touch")
-    touch: textcycle("крепко обнимает меня, впиваясь ногтями в плечо", "smell")
+    cyclewriter: () -> cycle(this)
 
 is_visited = (situation) ->
   situations = undum.game.situations[situation]

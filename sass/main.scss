@@ -25,24 +25,9 @@ body {
 #content_wrapper {
   display: none; // Shown by Javascript
 }
-/*
-#content_wrapper {
-  margin: 1.1em auto;
-  padding: 2.8em;
-}
-@media (min-width: 981px) {
-  #content_wrapper {
-    margin: 1.1em 15%;
-  }
-}
-@media (min-width: 1281px) {
-  #content_wrapper {
-    margin: 1.1em 25%;
-  }
-}
-*/
 // The title block
 .title {
+  margin-top: 2em;
   @include col(10,12);
   @media (min-width: breakpoint-min(sm)) {
     @include make-col-offset(1);
