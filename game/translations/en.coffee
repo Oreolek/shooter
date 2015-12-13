@@ -283,7 +283,7 @@ module.exports.language =
     I shoot through his shiny metal #{link}.
     Another robot comes out the portal and knock him on the floor with a leg kick.
     Then it stomps on his head.
-    The weird android is turning into a puddle but his place is already taken by other, a normal one.
+    The weird robot is turning into a puddle but his place is already taken by other, a normal one.
   """
   spare_pacifist: """
     I put down the pistol.

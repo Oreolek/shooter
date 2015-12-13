@@ -91,6 +91,7 @@ situation "shoot_pacifist",
   choices: ["#shoot"],
   before: (character, system) ->
     character.sandbox.shot_pacifist = 1
+    _paq.push(['setCustomDimension', 2, character.sandbox.shot_pacifist])
   content: (character, system) ->
     link = textcycle("head".l(), "leg")
     return "shoot_pacifist".l()(link)
@@ -104,6 +105,7 @@ situation "spare_pacifist",
   tags: "pacifist",
   before: (character, system) ->
     character.sandbox.shot_pacifist = 0
+    _paq.push(['setCustomDimension', 2, character.sandbox.shot_pacifist])
   choices: ["#shoot"],
   content: (character, system) ->
     return "spare_pacifist".l()
@@ -122,9 +124,9 @@ play_step = (volume) ->
 
 situation "finale",
   before: (character, system) ->
-     _paq.push(['setCustomDimension', 1, character.sandbox.shots])
-     _paq.push(['setCustomDimension', 2, character.sandbox.shot_pacifist])
-     _paq.push(['setCustomDimension', 3, character.sandbox.reloads])
+    _paq.push(['setCustomDimension', 1, character.sandbox.shots])
+    _paq.push(['setCustomDimension', 2, character.sandbox.shot_pacifist])
+    _paq.push(['setCustomDimension', 3, character.sandbox.reloads])
   choices: ["#finale"],
   content: (character, system) ->
     if character.sandbox.shots < 36
