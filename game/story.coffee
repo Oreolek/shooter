@@ -6,129 +6,74 @@ BUT it also means that every phrase should be a separate situation.
 ###
 
 situation 'answer1',
-  optionText: "Милая, я просто за тебя беспокоюсь.",
+  optionText: "answer1_option".l(),
   choices: ['#answer1'],
   tags: "start",
   canView: () -> !is_visited(this.name),
-  content: """
-    -- Милая, я просто за тебя беспокоюсь.
-
-    -- Почему?
-    Я не на работе.
-    Ты не на работе.
-    Вокруг дома стоит надёжная защита.
-  """
+  content: "answer1".l()
 
 situation 'branch1-a',
-  optionText: "Защиты недостаточно.",
+  optionText: "branch1_a_option".l()
   choices: ['#start'],
   tags: "answer1",
   canView: () -> !is_visited(this.name),
-  content: """
-    -- Защиты недостаточно. -- я кладу руку на рукоять пистолета.
-
-    -- Антоша, это -- наш романтический вечер. Ты можешь оставить пистолет в доме.
-  """
+  content: "branch1_a".l()
 
 situation 'branch1-b',
-  optionText: "Я всегда держу его при себе.",
+  optionText: "branch1_b_option".l()
   choices: ['#start'],
   tags: "answer1",
   canView: () -> !is_visited(this.name),
-  content: """
-    -- Я всегда держу его при себе. Это нормально.
-
-    -- Антон!
-    Я три недели ждала, когда у нас наконец-то будет вечер на двоих.
-    Положи пистолет и расслабься.
-  """
+  content: "branch1_b".l()
 
 situation 'dlg-intro-finale1',
-  optionText: "Я и так расслаблен.",
+  optionText: "dlg_finale1_option".l()
   choices: ['#stage3'],
   tags: "answer2",
   canView: () -> !is_visited(this.name),
-  content: () -> """
-    -- О чём ты говоришь?
-    Я и так расслаблен.
-    Смотри, какой красивый закат, эти #{this.writers.birds}.
-    Только ты и я, как ты и хотела.
-
-    -- Да, но я не хочу ни в кого стрелять!
-  """,
+  content: (character) -> "dlg_finale1".l(cycle(this, character))
+  cycle_gallery: () -> "dlg_finale1_cycle".l()
   writers:
-    birds: textcycle("птички поют", "flowers"),
-    flowers: textcycle("цветочки растут", "trees"),
-    trees: textcycle("деревья так похожи на магические руны", "birds")
+    cyclewriter: (character) -> cycle(this, character)
 
 situation 'answer2',
-  optionText: "Я его даже не трогаю.",
+  optionText: "answer2_option".l()
   choices: ['#answer2', "#stage2"],
   tags: "start",
   canView: () -> !is_visited(this.name),
-  content: """
-  -- Я его даже не трогаю.
-
-  -- Да, но ты держишь его рядом.
-  Ты не можешь расслабиться, я чувствую.
-  """
+  content: "answer2".l()
 
 situation 'lazy',
-  optionText: "Я просто не вынимал его из кобуры.",
+  optionText: "lazy_option".l()
   choices: ['#lazy', "#stage2"],
   canView: () -> !is_visited(this.name),
   tags: "start",
-  content: """
-  -- Я просто не вынимал его из кобуры.
-  Какое это имеет значение?
-
-  -- Только не говори мне, что ты и на предохранитель поленился его поставить.
-  """
+  content: "lazy".l()
 
 situation 'lazy2',
-  optionText: "Конечно, он на предохранителе.",
+  optionText: "lazy2_option".l()
   choices: ['#stage2'],
   tags: "lazy",
   canView: () -> !is_visited(this.name),
-  content: """
-  -- Конечно, он на предохранителе.
-  Видишь, ничего страшного. -- я вытащил пистолет, чтобы показать ей.
-
-  -- Антон!
-  Ты вообще меня слушаешь?!
-  Не трогай пистолет!
-
-  Я со вздохом возращаю оружие в кобуру.
-  """
+  content: "lazy2".l()
 
 situation 'lazy3',
-  optionText: "Я не собираюсь стрелять.",
+  optionText: "lazy3_option".l()
   choices: ['#stage3'],
   tags: "stage2",
   canView: () -> !is_visited(this.name),
-  content: """
-  -- Я не собираюсь стрелять.
-
-  -- Тогда зачем ты его взял?!
-  """
+  content: "lazy3".l()
 
 situation 'dlg-intro-finale2',
-  optionText: "Это просто мой пистолет.",
+  optionText: "dlg_finale2_option".l()
   choices: ['#intro'],
   tags: "stage3",
   canView: () -> !is_visited(this.name),
-  content: """
-  -- Это просто мой пистолет.
-  Лучше посмотри на эти розовые облака в небе.
-  Вон то похоже на зайчика, правда?
-
-  -- О Великие Боги, у тебя и патроны с собой?!
-  """,
+  content: "dlg_finale2".l()
 
 situation 'endintro',
-  optionText: "Объясниться и помириться"
-  content: () ->
-    return "endintro".l()
+  optionText: "endintro_option".l()
+  content: "endintro".l()
   choices: ["#shoot"],
   tags: "intro"
 
@@ -139,8 +84,9 @@ situation "pacifist",
   content: (character, system) ->
     return "pacifist".l()
 
+# An alternative cycle implementation.
 situation "shoot_pacifist",
-  optionText: "Убить пацифиста",
+  optionText: "shoot_pacifist_option".l()
   tags: "pacifist",
   choices: ["#shoot"],
   before: (character, system) ->
@@ -154,7 +100,7 @@ situation "shoot_pacifist",
     arm: textcycle("arm".l(), "head")
 
 situation "spare_pacifist",
-  optionText: "Опустить оружие",
+  optionText: "spare_pacifist_option".l()
   tags: "pacifist",
   before: (character, system) ->
     character.sandbox.shot_pacifist = 0
@@ -195,7 +141,7 @@ situation "finale",
 
 situation "stats",
   tags: "finale",
-  optionText: "Ваш счёт",
+  optionText: "stats_option".l()
   content: """
     #{"stats".l()}
 

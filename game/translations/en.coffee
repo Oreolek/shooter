@@ -157,6 +157,7 @@ module.exports.language =
     "looks far ahead, thinking about something",
     "hugging me tight, sinking her nails in my shoulder",
   ]
+  answer1_option: "Honey, I'm just worried about you."
   finale:
     """
       Ко мне подходит Кристина.
@@ -347,4 +348,84 @@ module.exports.language =
     The following android delivers a hard blow to pacifist's nape.
     He walks over the motionless body and looks at me with his evil eyes.
     I guess the battle continues.
+  """
+  answer1: """
+    „Honey, I'm just worried about you.”
+
+    „Why?
+    I'm not on a job.
+    You're not on a job.
+    There's a good protection around the house.”
+  """
+  branch1_a_option: "It's not enough."
+  branch1_a: """
+    „It's not enough. -- I place my hand on pistol's grip.”
+
+    „Tony, it's our romantic evening.
+    You can leave the gun at home.”
+  """
+  branch1_b_option: "I always keep it on me."
+  branch1_b: """
+    „I always keep it on me. It's okay.“
+
+    „Tony!
+    I have been waiting for three weeks to have an evening for two.
+    Put the gun down and relax.“
+  """
+  stats_option: "Your score"
+  dlg_finale1_option: "I'm relaxed already."
+  dlg_finale1: (link) -> """
+    “What are you talking about?
+    I'm relaxed already.
+    Look at this beautiful sunset, these #{link}.
+    Only you and me, just like you wanted.”
+
+    “Yes, but I don't want to shoot anybody!”
+  """
+  dlg_finale1_cycle: [
+    "birds chirping",
+    "flowers blooming",
+    "trees standing so similar to magic runes",
+  ]
+  answer2_option: "I'm not even touching it."
+  answer2: """
+    “I'm not even touching it.”
+
+    “Yes, but you keep it close.
+    You can't relax, I feel it.”
+  """
+  lazy_option: "I just didn't take it out the holster."
+  lazy: """
+    “I just was too lazy to take it out the holster.
+    What difference does it make?”
+
+    “Don't tell me you were too lazy to put the safety on.”
+  """
+  shoot_pacifist_option: "Shoot pacifist"
+  spare_pacifist_option: "Put down the gun"
+  endintro_option: "Explain and reconcile"
+  lazy2_option: "Sure, it's on safety."
+  lazy2: """
+    “Sure, it's on safety.
+    See, nothing to fear.” -- I took out the pistol to show her.
+
+    “Tony!
+    Are you even listening to me?!
+    Don't touch the gun!”
+
+    Sighing, I holster the gun.
+  """
+  lazy3_option: "I don't intend to shoot."
+  lazy3: """
+    “I don't intend to shoot.”
+
+    “Why did you even took it then?”
+  """
+  dlg_finale2_option: "It's just my gun."
+  dlg_finale2: """
+    “It's just my gun.
+    Just look at these pink clouds in the sky.
+    This one looks like a rabbit, isn't it?”
+
+    “Oh the Great Gods, is that live cartridge on you?!”
   """

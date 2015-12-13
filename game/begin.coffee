@@ -30,16 +30,15 @@ way_to = (content, ref) -> a(content).class('way').ref(ref)
 textlink = (content, ref) -> a(content).once().writer(ref)
 textcycle = (content, ref) -> a(content).replacer(ref).class("cycle").id(ref).toString()
 # Cycling link. It's implied there can be only one per situation.
-# Also it saves the current index in the window object, which is not okay for longer games because no saving.
 # You are welcome to improve this code.
-cycle = (obj) ->
+cycle = (obj, character) ->
   responses = obj.cycle_gallery()
-  window.cycle_index ?= []
-  window.cycle_index[obj.name] ?= 0
-  if window.cycle_index[obj.name] == responses.length
-    window.cycle_index[obj.name] = 0
-  response = responses[window.cycle_index[obj.name]]
-  window.cycle_index[obj.name]++
+  character.sandbox.cycle_index ?= [] # initialize with empty array
+  character.sandbox.cycle_index[obj.name] ?= 0 # initialize with 0
+  response = responses[character.sandbox.cycle_index[obj.name]]
+  character.sandbox.cycle_index[obj.name]++
+  if character.sandbox.cycle_index[obj.name] == responses.length
+    character.sandbox.cycle_index[obj.name] = 0
   return textcycle(response, 'cyclewriter')
 writemd = (system, text) ->
   if typeof text is Function
@@ -48,11 +47,11 @@ writemd = (system, text) ->
 
 situation "start",
   cycle_gallery: () -> "christine".l()
-  content: () ->
-    return "start".l()(cycle(this))
+  content: (character) ->
+    return "start".l()(cycle(this, character))
   choices: ["#start"],
   writers:
-    cyclewriter: () -> cycle(this)
+    cyclewriter: (character) -> cycle(this, character)
 
 is_visited = (situation) ->
   situations = undum.game.situations[situation]
