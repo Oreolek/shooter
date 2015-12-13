@@ -221,13 +221,14 @@ module.exports.language =
       I could not gather enough samples to score against.
       Maybe in later versions.
     """
-  stats_end: """
-    Goodbye.
+  stats_end:
+    """
+      Goodbye.
 
-    *Oreolek*
-  """
-  stats_shot = "Just a quick question: why did you shoot the pacifist bot? It was harmless. Did you even notice him?"
-  stats_spared = "Nice call on sparing the pacifist, by the way."
+      *Oreolek*
+    """
+  stats_shot: "Just a quick question: why did you shoot the pacifist bot? It was harmless. Did you even notice him?"
+  stats_spared: "Nice call on sparing the pacifist, by the way."
   clips_not_found: [
     """
       “Can't find it!”
