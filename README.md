@@ -12,7 +12,7 @@ Here's what you can see here:
 * HTML5 sound effects with volume control
 * Graphical effects
 * Realtime events
-* Menu dialogue section
+* Non-linear menu dialogue
 
 #### International support
 Did you know Undum has built-in i18n support?
