@@ -11,7 +11,7 @@ Here's what you can see here:
 * International support
 * HTML5 sound effects with volume control
 * Graphical effects
-* Realtime timer
+* Realtime events
 * Menu dialogue section
 
 #### International support
@@ -30,6 +30,26 @@ Please.
 #### Splitting your game
 See `Gulpfile.js.`
 The trick is to concatenate your files before every build.
+
+#### The custom text cycling
+A cycling link is a "replacer" hyperlink that replaces its contents with another text.
+The game implies that a situation cannot have more than one cycling link.
+
+The basic function for a replacer link is this:
+`textcycle = (content, ref) -> a(content).replacer(ref).class("cycle").id(ref).toString()`
+
+The `shoot_pacifist` situation uses only this function to do a text cycle.
+But there's also a more advanced version.
+
+The function `cycle` expects your situation to have a replacer action `cyclewriter`
+written like this:
+
+    cyclewriter: (character) -> cycle(this, character)
+
+Also it expects your situation to have a `cycle_gallery` function.
+This is the function that returns your text strings.
+
+You can see how it's done in the `start` situation.
 
 ## MIT License
 Copyright © 2015 Alexander Yakovlev, http://en.oreolek.ru

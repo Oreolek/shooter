@@ -1,4 +1,7 @@
 
+# This game does not *show* any qualities but it uses them.
+# You can even resurrect the qualities block from the previous commits
+# and it would work!
 qualities
   head:
     bullets: qualities.integer("bullets".l()),
