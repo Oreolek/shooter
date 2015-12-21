@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.8/jquery.jqplot.min.css">
   </head>
   <body>
     <div id="page" class="container">
@@ -75,6 +76,10 @@
     <audio id="step1" preload="auto"><source src="audio/step1.mp3" type='audio/mpeg; codecs="mp3"'></audio>
     <audio id="step2" preload="auto"><source src="audio/step2.mp3" type='audio/mpeg; codecs="mp3"'></audio>
     <audio id="roar" preload="auto"><source src="audio/roar.mp3" type='audio/mpeg; codecs="mp3"'></audio>
+    <!-- This is a big Raconteur problem: essentially I have to include jQuery twice. jqPlot is not available on npm. -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.8/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.8/plugins/jqplot.pieRenderer.min.js"></script>
     <script type="text/javascript" src="game/undum.js"></script>
     <script type="text/javascript" src="game/bundle.js"></script>
     <!-- Piwik tracking. Google or Yandex DON'T see these analytics. Also I support Do Not Track feature. -->

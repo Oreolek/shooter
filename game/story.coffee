@@ -145,14 +145,36 @@ situation "finale",
 # but I need players for that and for some reason Piwik doesn't have any data from
 # my betatesters. So instead I just have to scold the player.
 situation "stats",
-  tags: "finale",
+  tags: ["finale", "start"],
   before: (character, system, from) ->
     system.clearContent()
   optionText: "stats_option".l()
   content: (character, system) ->
     writemd(system, "stats".l())
+    writemd(system, "<div id='pie1'></div><div id='pie2'></div>")
+    # self.jQuery is global jQuery
+    # $ is local, npm one
+    shot_data = $.getJSON("http://webstats.oreolek.ru/index.php?module=API&method=CustomDimensions.getCustomDimension&format=JSON&idSite=2&period=month&date=2015-12-21&idDimension=2&reportUniqueId=CustomDimensions_getCustomDimension_idDimension--2&expanded=1&idDimension=2", (data) ->
+      plot1 = self.jQuery.jqplot('pie1', shot_data, {
+        gridPadding: {top:0, bottom:38, left:0, right:0},
+        seriesDefaults:{
+            renderer:self.jQuery.jqplot.PieRenderer, 
+            trendline:{ show:false }, 
+            rendererOptions: { padding: 8, showDataLabels: true }
+        },
+        legend:{
+            show:true, 
+            placement: 'outside', 
+            rendererOptions: {
+                numberRows: 1
+            }, 
+            location:'s',
+            marginTop: '15px'
+        }       
+      })
+    )
     if character.sandbox.shot_pacifist == 1
       writemd(system, "stats_shot".l())
-    else
+    else if character.sandbox.shot_pacifist == 0 #it can't be "undefined" but what the hell
       writemd(system, "stats_spared".l())
     writemd(system, "stats_end".l())
