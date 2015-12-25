@@ -50,7 +50,7 @@ module.exports.language =
     "I. Hate. Machines.",
     "MECHANOID ANNIHILATION",
     'Destroy the mechanoids',
-    "Send a bullet to robot",
+    "Send a round to robot",
     "Send a bullet with explosion",
     "Push the trigger FOR THE HUMANITY",
     "Sit down and shoot from a hip",
@@ -69,7 +69,7 @@ module.exports.language =
   ]
   enemies: 'Enemies ahead'
   clips: 'Cartridges'
-  bullets: 'Bullets in cartridge'
+  bullets: 'Rounds in cartridge'
   clips_found: [
     'Aha! Got one. I hope it has some ammo.',
     "Eh, here's one. Looks heavy -- I hope it has some ammo.",

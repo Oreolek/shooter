@@ -27,7 +27,7 @@ markdown = new md({
 undum.game.id = "7a1aba32-f0fd-4e3b-ba5a-59e3fa9e6012"
 # You bump the version each time you make a save-breaking bug, i.e. change the game logic.
 # Comment and text changes should be fine.
-undum.game.version = "3.6"
+undum.game.version = "3.8"
 
 a = require('raconteur/lib/elements.js').a
 # link to a different situation. Styled differently. Not used in this project.
