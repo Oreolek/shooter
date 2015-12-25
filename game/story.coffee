@@ -129,7 +129,7 @@ situation "finale",
     _paq.push(['setCustomDimension', 3, character.sandbox.reloads])
   choices: ["#finale"],
   content: (character, system) ->
-    if character.sandbox.shots < 36
+    if character.sandbox.shots < 21
       """
         #{"finale_perfect".l()}
 
@@ -140,19 +140,3 @@ situation "finale",
 
       #{"credits".l()}
     """
-
-# I wanted to do Piwik graphs a lá Telltale's "How many players did that too"
-# but I need players for that and for some reason Piwik doesn't have any data from
-# my betatesters. So instead I just have to scold the player.
-situation "stats",
-  tags: "finale",
-  before: (character, system, from) ->
-    system.clearContent()
-  optionText: "stats_option".l()
-  content: (character, system) ->
-    writemd(system, "stats".l())
-    if character.sandbox.shot_pacifist == 1
-      writemd(system, "stats_shot".l())
-    else
-      writemd(system, "stats_spared".l())
-    writemd(system, "stats_end".l())

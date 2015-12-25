@@ -1,7 +1,8 @@
 # This is an easy game.
 # I'm thinking if you want more harder approach, you can:
-# a) remove bullet counter (you don't know how many bullets left in a clip)
-# b) remove canChoose restriction (you can shoot any time you want, but if you have no bullets - nothing comes out and you've lost a turn)
+# a) remove bullet counter (you have to count rounds yourself)
+# b) remove canChoose restriction (you can shoot any time you want, but if you have no rounds left - nothing comes out and you've lost a turn)
+# c) then the enemies can finally have enough time to go close enough and attack
 
 # Scripted events. Called *after* every shot.
 scripted_events = (character, system) ->
@@ -151,8 +152,8 @@ situation "shoot",
     if character.sandbox.shots == 1 # guaranteed first hit
       return system.doLink("hit")
     roll = system.rnd.dice(1,20) # d20 roll
-    hit_threshold = 15
-    miss_threshold = 18
+    hit_threshold = 14
+    miss_threshold = 17
     if character.qualities.enemies == 1
       miss_threshold = 15 # you can't nick The Boss
     switch
@@ -196,7 +197,7 @@ situation "reload",
   after: (character, system) ->
     spend_clip(character, system)
     writemd(system, "reload_response".l())
-    if character.sandbox.trick_shot == 0 and character.sandbox.clips.length == 4
+    if character.sandbox.trick_shot == 0 and character.sandbox.clips.length == character.sandbox.search_clip_threshold
       character.sandbox.trick_shot = 1
       writemd(system, "trick_shot_discover".l()(character))
     return true

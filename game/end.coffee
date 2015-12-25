@@ -11,7 +11,7 @@ qualities
 undum.game.init = (character, system) ->
   system.setQuality("bullets", 6)
   # Number of enemies. More enemies means the game will be longer.
-  system.setQuality("enemies", 25)
+  system.setQuality("enemies", 21)
   system.setQuality("clips", Math.floor(character.qualities.enemies / 6))
   character.sandbox.search_clip_threshold = character.qualities.clips - 2
   character.sandbox.clips = []
@@ -39,6 +39,7 @@ undum.game.init = (character, system) ->
       value: 100,
       slide: (event, ui) ->
         value = slider.slider('value')
+        cookie.set('volume', value, { expires: '1D' })
         volume = $('.voldisplay')
         if value <= 5
           volume.css('background-position', '0 0')
@@ -49,6 +50,7 @@ undum.game.init = (character, system) ->
         else
           volume.css('background-position', '0 -75px')
     })
+    slider.slider('value', cookie.get("volume"))
   )
   setInterval( () ->
     play_steps(character)

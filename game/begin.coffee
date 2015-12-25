@@ -2,6 +2,7 @@ situation = require('raconteur')
 undum = require('undum-commonjs')
 oneOf = require('raconteur/lib/oneOf.js')
 qualities = require('raconteur/lib/qualities.js')
+cookie = require('tiny-cookie')
 
 # load the translations
 undumloc = require("./translations/ru.coffee").language

@@ -178,13 +178,6 @@ module.exports.language =
     * Yoyodaman234 - [metal footstep 1](http://freesound.org/people/Yoyodaman234/sounds/223168/)
     * qubodup - [Bullet silhoettes](https://openclipart.org/detail/29029/bullet-silhouettes)
   """
-  stats: """
-    Спасибо, что прошли мою игру.
-
-    Здесь должны быть графики и счёт... но со всеми пользователями Adblock и
-    ошибками Piwik мне не удалось собрать достаточно пользователей, чтобы сравнивать результаты.
-    Возможно, в будущих обновлениях.
-  """
   clips_not_found:[
     "-- Не могу найти!",
     """
@@ -322,15 +315,6 @@ module.exports.language =
     Я три недели ждала, когда у нас наконец-то будет вечер на двоих.
     Положи пистолет и расслабься.
   """
-  stats_option: "Ваш счёт"
-  stats_end:
-    """
-      До свидания.
-
-      *Oreolek*
-    """
-  stats_shot: "Только быстрый вопрос: почему вы стреляли в пацифист-бота? Он был безвреден. Вы же заметили его?"
-  stats_spared: "Хорошее решение не стрелять в пацифиста, кстати."
   dlg_finale1_option: "Я и так расслаблен."
   dlg_finale1: (link) -> """
     -- О чём ты говоришь?

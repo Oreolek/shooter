@@ -59,17 +59,17 @@ module.exports.language =
   ]
   reload: "Reload the pistol",
   reload_response: """
-    I put another clip in the pistol.
+    I put another cartridge in the pistol.
     I hope it has some ammo.
   """
-  search: "Ask Christine to search for a clip"
+  search: "Ask Christine to search for a cartridge"
   clips_not_found: [
     "No, nothing here.",
     "Come on, at least one! No, didn't find any.",
   ]
   enemies: 'Enemies ahead'
   clips: 'Cartridges'
-  bullets: 'Bullets in clip'
+  bullets: 'Bullets in cartridge'
   clips_found: [
     'Aha! Got one. I hope it has some ammo.',
     "Eh, here's one. Looks heavy -- I hope it has some ammo.",
@@ -133,7 +133,7 @@ module.exports.language =
 
       „I swear you and your stashes...”
 
-      I hope she'll find at least a half-spent clip.
+      I hope she'll find at least a half-spent cartridge.
     """,
     """
       „Christine! In the toilet, under the cistern!”
@@ -213,22 +213,6 @@ module.exports.language =
       * Yoyodaman234 - [metal footstep 1](http://freesound.org/people/Yoyodaman234/sounds/223168/)
       * qubodup - [Bullet silhoettes](https://openclipart.org/detail/29029/bullet-silhouettes)
     """
-  stats:
-    """
-      Thank you for finishing my game.
-
-      There should be some graphs and scoring here.. but with all the Adblock users and Piwik errors
-      I could not gather enough samples to score against.
-      Maybe in later versions.
-    """
-  stats_end:
-    """
-      Goodbye.
-
-      *Oreolek*
-    """
-  stats_shot: "Just a quick question: why did you shoot the pacifist bot? It was harmless. Did you even notice him?"
-  stats_spared: "Nice call on sparing the pacifist, by the way."
   clips_not_found: [
     """
       “Can't find it!”
@@ -253,7 +237,7 @@ module.exports.language =
     "“Nothing!”",
     "“It's empty! Jog your memory better!”",
     """
-      “Can't you keep every clip in one place?!
+      “Can't you keep every cartridge in one place?!
       I can't find them!”
 
       “It's a system!”
@@ -325,7 +309,7 @@ module.exports.language =
   shoot_boss: "Calm down the titan with lead"
   trick_shot_discover: (character) ->
     """
-      I count the clips.
+      I count the cartridges.
       Only four left.
       I've killed #{character.sandbox.killed} robots, so there are still... oh.
       OH.
@@ -345,7 +329,7 @@ module.exports.language =
   """
   branch1_a_option: "It's not enough."
   branch1_a: """
-    „It's not enough. -- I place my hand on pistol's grip.”
+    “It's not enough.“ -- I place my hand on pistol's grip.
 
     „Tony, it's our romantic evening.
     You can leave the gun at home.”
@@ -358,7 +342,6 @@ module.exports.language =
     I have been waiting for three weeks to have an evening for two.
     Put the gun down and relax.“
   """
-  stats_option: "Your score"
   dlg_finale1_option: "I'm relaxed already."
   dlg_finale1: (link) -> """
     “What are you talking about?
